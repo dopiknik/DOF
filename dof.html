@@ -391,11 +391,6 @@ function drawVis(res, object_m, focus_m){
     ctx.beginPath(); ctx.moveTo(left+12, midY); ctx.lineTo(x, midY + (t-0.5)*40); ctx.stroke();
   }
 
-  // small FOV box
-  ctx.strokeStyle='rgba(115,208,255,0.25)';
-  ctx.strokeRect(canvas.clientWidth-148, 14, 132, 68);
-  ctx.fillStyle = '#a6e9ff'; ctx.font='11px Inter'; ctx.fillText('Схема FOV', canvas.clientWidth-148, 12);
-}
 
 // main compute + UI update
 function computeAndRender(){
@@ -487,3 +482,4 @@ computeAndRender();
 </script>
 </body>
 </html>
+
