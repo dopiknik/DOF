@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0a111d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="LensKit">
-<title>LensKit · Panasonic S5IIX · Операторский калькулятор</title>
+<title>LensKit Field 3.0 · Panasonic S5IIX</title>
 <style>
 :root{color-scheme:dark;--bg:#08101b;--surface:#101c2b;--surface2:#152436;--surface3:#1b3043;--line:#2b4054;--text:#f0f6fc;--muted:#a3b5c5;--blue:#8edaff;--mint:#77e3bd;--amber:#ffd382;--danger:#ff9a9a;--shadow:0 12px 32px #01081255;--radius:17px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 25% -10%,#16324a 0,transparent 55%),var(--bg);color:var(--text);font-size:15px;line-height:1.35}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.42;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}input,select,textarea{background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px 12px;min-height:45px;width:100%}input:disabled,select:disabled{opacity:.6}input[type=number]{font-variant-numeric:tabular-nums}select{cursor:pointer}input[type=range]{accent-color:var(--blue);padding:0;min-height:28px}::placeholder{color:#8194a6}.app{max-width:1430px;margin:auto;padding:18px 18px 32px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.brand{display:flex;align-items:center;gap:12px}.brandmark{display:grid;place-items:center;width:40px;height:40px;border:1px solid #5babc9;border-radius:13px;background:#102c3d;color:var(--blue);font-size:21px;font-weight:900;letter-spacing:-2px}.brand h1{font-size:21px;line-height:1.1;margin:0;letter-spacing:-.6px}.brand small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.layout{display:grid;grid-template-columns:minmax(320px,375px) minmax(0,1fr);align-items:start;gap:15px}.panel{background:linear-gradient(160deg,#142234 0%,var(--surface) 65%);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);min-width:0}.panel+.panel{margin-top:14px}.controls{position:sticky;top:12px}.small{font-size:12px;color:var(--muted)}.caption{font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 0 13px;gap:8px}.section-title h2{font-size:16px;margin:0;letter-spacing:-.2px}.section-title .sub{color:var(--muted);font-size:12px}.field{display:block;margin:14px 0 0}.field>span:first-child,.field>label:first-child{display:block;color:var(--muted);font-size:12px;font-weight:650;margin-bottom:7px}.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.seg button{border:1px solid var(--line);background:var(--surface2);border-radius:12px;min-height:53px;color:var(--text);font-size:17px;font-weight:800}.seg button.active{color:#071721;background:var(--blue);border-color:var(--blue)}.seg button small{font-size:10px;font-weight:700;display:block;opacity:.8}.presetrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.presetrow button{background:var(--surface2);border:1px solid var(--line);border-radius:9px;min-height:42px;color:var(--text);font-weight:750;font-size:13px}.presetrow button.active{background:#245d6f;border-color:var(--blue);color:#fff}.numbers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stepper{display:flex;gap:6px}.stepper input{min-width:0;text-align:center;font-size:20px;font-weight:800;padding:6px}.stepper button{flex:0 0 43px;min-height:46px;border:1px solid var(--line);border-radius:11px;color:var(--blue);background:var(--surface2);font-size:24px}.btn{border:1px solid var(--line);color:var(--text);background:var(--surface2);border-radius:11px;min-height:43px;padding:9px 13px;font-size:13px;font-weight:750}.btn.primary{background:var(--blue);color:#071825;border-color:var(--blue)}.btn.accent{background:#154737;border-color:#327d67;color:#abffe4}.btn.ghost{background:transparent}.btn.smallbtn{min-height:37px;padding:7px 10px}.btn.active{background:#1e5668;border-color:#80d0eb}.btn.danger{color:var(--danger)}.btn-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.divider{height:1px;background:var(--line);margin:16px 0}.toggle{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:var(--muted)}.toggle input{width:18px;min-height:18px;height:18px;accent-color:var(--blue)}.mini-note{color:var(--muted);font-size:11px;line-height:1.48}.alert{display:none;background:#472c20;border:1px solid #aa6740;color:#ffe2bf;border-radius:11px;padding:11px 13px;font-size:13px;margin-top:12px}.alert.show{display:block}.alert.error{background:#49252a;border-color:#b8616a;color:#ffd9df}.result-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}.pill{padding:6px 9px;border-radius:999px;font-size:11px;font-weight:800;background:#1f3e48;color:#a5ffe3}.hero{margin-top:12px;border:1px solid #35536a;background:radial-gradient(ellipse at 20% 0,#163e52 0,transparent 70%),#102536;border-radius:15px;padding:18px 19px 16px}.hero .label{color:#c3dbe7;letter-spacing:.09em;text-transform:uppercase;font-size:12px;font-weight:750}.big{font-size:clamp(42px,5vw,66px);line-height:1.05;letter-spacing:-2px;font-weight:850;margin:7px 0;color:#fff;font-variant-numeric:tabular-nums}.limits{display:grid;grid-template-columns:1fr 1fr;gap:8px;border-top:1px solid #35536a;padding-top:13px;margin-top:13px}.limit .title{color:var(--muted);font-size:12px}.limit .val{font-size:24px;font-weight:800;margin-top:2px;letter-spacing:-.5px;font-variant-numeric:tabular-nums}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:10px 0 12px}.metric{border:1px solid var(--line);background:#112232;border-radius:12px;padding:11px 12px;min-width:0}.metric .name{font-size:11px;color:var(--muted)}.metric .value{font-size:20px;font-weight:800;margin-top:6px;line-height:1.15;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.metric .help{font-size:11px;color:var(--muted);margin-top:4px}.viz{background:#0b1a2a;border:1px solid #31495b;border-radius:13px;margin-top:11px;overflow:hidden}.viz-top{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;gap:8px}.viz-title{font-size:13px;font-weight:850}.tabs{display:flex;gap:3px;border:1px solid var(--line);padding:3px;border-radius:10px;background:#101f30}.tabs button{background:transparent;color:var(--muted);border:0;border-radius:7px;padding:7px 11px;min-height:33px;font-size:12px;font-weight:800}.tabs button.active{background:#315268;color:#fff}.graphic{padding:4px 13px 11px}.graphic svg{width:100%;display:block}.viz-labels{display:flex;justify-content:space-between;gap:8px;margin-top:8px;color:var(--muted);font-size:11px}.legend{display:flex;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:11px}.dot{display:inline-block;height:8px;width:8px;border-radius:50%;margin-right:5px;background:var(--amber)}.dot.mint{background:var(--mint)}.dot.blue{background:var(--blue)}.frame{margin:0 12px 0;background:#102733;border:1px solid #567182;overflow:hidden;position:relative;border-radius:8px;display:grid;place-items:center}.frame svg{width:100%;height:100%;display:block}.frame-foot{padding:9px 13px 12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.extra{margin-top:10px;color:var(--muted);font-size:12px}.section-gap{margin-top:16px}.list3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.lens-card{padding:12px 10px;background:#122537;border:1px solid var(--line);border-radius:12px;min-width:0;text-align:left;color:var(--text)}.lens-card.current{border-color:var(--blue);box-shadow:inset 0 0 0 1px #8edaff66}.lens-card .f{font-size:22px;font-weight:900;color:var(--blue)}.lens-card .kv{font-size:12px;margin-top:6px;color:var(--muted)}.lens-card .kv strong{display:block;font-size:14px;color:var(--text);margin-top:2px}.toolcard{margin-top:14px;border:1px solid var(--line);border-radius:13px;background:#102030;padding:14px}.toolcard h3{font-size:15px;margin:0 0 6px}.toolcard .feedback{margin-top:10px;background:#192e40;border-radius:10px;padding:12px;line-height:1.5;font-size:13px;min-height:52px}.feedback .strong{font-size:20px;font-weight:850;color:var(--mint)}.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px;margin-top:12px}.shot{background:#152738;border:1px solid var(--line);border-radius:12px;padding:12px;min-width:0}.shot .shot-title{font-weight:800;overflow-wrap:anywhere}.shot .shot-info{font-size:12px;color:var(--muted);margin:6px 0 10px}.shot p{font-size:12px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.shot-actions{display:flex;gap:6px;flex-wrap:wrap}.foot{margin-top:17px;color:var(--muted);font-size:11px;line-height:1.6}.help-line{font-size:12px;color:var(--muted);margin-top:7px}.tagline{font-size:11px;color:var(--muted);margin-top:2px}.hidden{display:none!important}.sun{--bg:#edf4f8;--surface:#ffffff;--surface2:#e5f0f7;--surface3:#d2e6f1;--line:#90b0c4;--text:#0c2030;--muted:#37546a;--blue:#17628a;--mint:#16775b;--amber:#a35d00;--danger:#a82332;--shadow:0 6px 18px #35566b25;color-scheme:light;background:#eaf2f8}.sun .panel{background:#fff}.sun .hero{background:#d6edf5;border-color:#6ba3bb}.sun .hero .label,.sun .big{color:#0d2537}.sun .limits{border-color:#8ab9ca}.sun .metric,.sun .viz,.sun .toolcard,.sun .lens-card,.sun .shot,.sun .toolcard .feedback{background:#eaf3f8}.sun .metric .value,.sun .lens-card .kv strong{color:#0b2634}.sun .btn,.sun input,.sun select,.sun textarea,.sun .seg button,.sun .presetrow button{background:#e5f0f7;color:#102a3b}.sun .btn.primary,.sun .seg button.active{color:#fff;background:#17628a}.sun .frame{background:#d4e3ec}.sun .tabs{background:#dcebf3}.sun .tabs button.active{background:#17628a;color:#fff}.sun .lens-card.current{border-color:#17628a}.sun .pill{background:#d0efdf;color:#166745}.sun .alert{background:#ffeedc;color:#6b360d}.sun .alert.error{background:#ffe7e9;color:#77212a}.sun .lens-card .f{color:#17628a}
@@ -14,22 +14,65 @@
 @media(max-width:960px){.layout{grid-template-columns:1fr}.controls{position:static}.main{min-width:0}.panel{padding:15px}.controls .control-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.controls .lens-row{grid-column:1/-1}.controls .control-advanced{grid-column:1/-1}.controls .control-actions{grid-column:1/-1}}
 @media(max-width:560px){.app{padding:10px 10px 25px}.top{margin:3px 3px 10px}.brandmark{width:35px;height:35px}.brand h1{font-size:19px}.brand small{font-size:10px}.toolbar{gap:5px}.toolbar .btn{padding:7px 8px;font-size:12px;min-height:37px}.panel{padding:12px;border-radius:14px}.controls .control-fields{display:block}.controls .field{margin-top:11px}.hero{padding:13px 15px;margin-top:9px}.big{font-size:48px;margin:5px 0}.limit .val{font-size:21px}.metrics{gap:6px}.metric{padding:9px 8px}.metric .value{font-size:17px}.metric .name{font-size:10px}.list3{gap:5px}.lens-card{padding:10px 7px}.lens-card .f{font-size:20px}.lens-card .kv{font-size:11px}.lens-card .kv strong{font-size:12px}.toolcard{padding:11px}.tabs button{padding:6px 9px}.brand{gap:7px}}
 @media(prefers-reduced-motion:no-preference){button{transition:background .14s ease,border-color .14s ease,transform .08s}button:active:not(:disabled){transform:scale(.98)}}
+
+/* LensKit Field 3.0 — interactive set diagram */
+.scene-card{padding:4px 12px 12px}
+.scene-svg{width:100%;display:block;background:linear-gradient(180deg,#092332,#0c2031);border:1px solid #31536c;border-radius:13px;touch-action:none;user-select:none;-webkit-user-select:none}
+.scene-svg [data-drag]{cursor:grab;touch-action:none}
+.scene-svg [data-drag]:active{cursor:grabbing}
+.scene-scroller{width:100%;min-width:0}
+.scene-tools{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:9px 0}
+.scene-tools .btn{min-height:36px;padding:6px 10px}
+.scene-actors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:9px}
+.scene-actor{background:#132b3b;border:1px solid #294b60;padding:10px;border-radius:11px;min-width:0}
+.scene-actor.inactive{display:none}
+.scene-actor-top{font-size:12px;font-weight:800;display:flex;justify-content:space-between;gap:3px;margin-bottom:5px}
+.scene-actor-top b{font-size:14px}
+.scene-actor input{min-width:0;min-height:38px;padding:6px 8px;font-size:16px;font-weight:800}
+.scene-actor .scene-status{font-size:11px;line-height:1.5;margin-top:6px;min-height:32px;color:#b0cbd9}
+.scene-cue{color:#b8d5e3;font-size:12px;margin-top:7px;line-height:1.4}
+.scene-hit{fill:transparent;stroke:transparent;stroke-width:1}
+.scene-note{margin:7px 0 0;color:var(--muted);font-size:11px}
+.scene-label{font-family:Inter,Arial,sans-serif;font-weight:750;paint-order:stroke fill;stroke:#0c2131;stroke-width:3;stroke-linejoin:round}
+.quick-presets{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.quick-presets button{min-height:48px;padding:5px 3px;font-size:12px;font-weight:750;line-height:1.2;border:1px solid var(--line);color:var(--text);background:var(--surface2);border-radius:10px}
+.quick-presets button:active{border-color:var(--blue)}
+.diffraction{font-size:12px;color:var(--amber);margin-top:8px;line-height:1.45}
+.hyperbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+.hyperbar .btn{font-size:12px;min-height:37px}
+.sun .scene-svg{background:#122f43;border-color:#91b0c5}
+.sun .scene-actor{background:#e1eff7;border-color:#9ebdcd}
+.sun .scene-actor .scene-status{color:#2a5366}
+.sun .scene-cue{color:#24455c}
+.sun .quick-presets button{background:#e5f0f7;color:#102a3b}
+.sun .diffraction{color:#845319}
+@media(max-width:560px){.scene-card{padding:3px 1px 10px}.scene-actors{grid-template-columns:repeat(2,minmax(0,1fr))}.scene-actor{padding:8px}.scene-svg{min-height:230px}.quick-presets{gap:4px}.quick-presets button{font-size:11px;padding:5px 2px}.scene-tools{gap:5px}.scene-tools .btn{padding:5px 8px}.scene-svg .scene-label{font-size:19px}}
 </style>
 </head>
 <body>
 <div id="appRoot" class="app">
 <header class="top">
- <div class="brand"><div class="brandmark" aria-hidden="true">L<span style="font-size:13px">K</span></div><div><h1>LensKit <span style="font-size:12px;color:var(--muted);font-weight:700">FIELD</span></h1><small>Panasonic S5IIX · Операторский калькулятор</small></div></div>
+ <div class="brand"><div class="brandmark" aria-hidden="true">L<span style="font-size:13px">K</span></div><div><h1>LensKit <span style="font-size:12px;color:var(--muted);font-weight:700">FIELD 3.0</span></h1><small>Panasonic S5IIX · Операторский калькулятор</small></div></div>
  <div class="toolbar"><button class="btn smallbtn" id="sunBtn" type="button" aria-label="Высокая контрастность">☀ Контраст</button><button class="btn smallbtn" id="lockBtn" type="button" aria-pressed="false">○ Зафиксировать</button></div>
 </header>
 <div class="layout">
  <aside class="controls panel" id="controlPanel">
-  <div class="section-title"><h2>Параметры съемки</h2><div class="tabs" role="tablist" aria-label="Режим настройки"><button class="active" type="button" id="quickTab" aria-selected="true">Быстрый</button><button type="button" id="advancedTab" aria-selected="false">Расширенный</button></div></div>
+  <div class="section-title"><h2>Параметры съёмки</h2><div class="tabs" role="tablist" aria-label="Режим настройки"><button class="active" type="button" id="quickTab" aria-selected="true">Быстрый</button><button type="button" id="advancedTab" aria-selected="false">Расширенный</button></div></div>
   <div class="control-fields">
    <div class="lens-row field"><span>Объектив</span><div class="seg" id="lensButtons"><button type="button" data-lens="35" data-lockable>35<small>мм · f/1.8</small></button><button type="button" data-lens="50" class="active" data-lockable>50<small>мм · f/1.8</small></button><button type="button" data-lens="85" data-lockable>85<small>мм · f/1.8</small></button></div></div>
    <div class="field"><span>Диафрагма</span><div class="stepper"><button type="button" data-step="aperture:-1" data-lockable aria-label="Уменьшить диафрагменное число">−</button><select id="aperture" aria-label="Диафрагма" data-lockable><option value="1.8">f/1.8</option><option value="2">f/2</option><option value="2.8" selected>f/2.8</option><option value="4">f/4</option><option value="5.6">f/5.6</option><option value="8">f/8</option><option value="11">f/11</option><option value="16">f/16</option><option value="22">f/22</option></select><button type="button" data-step="aperture:1" data-lockable aria-label="Увеличить диафрагменное число">+</button></div></div>
    <div class="field"><span id="distanceLabel">До объекта, м</span><div class="stepper"><button type="button" data-step="distance:-1" data-lockable aria-label="Уменьшить дистанцию">−</button><input type="number" id="distance" inputmode="decimal" min="0.01" step="0.1" value="2" data-lockable aria-label="Дистанция до объекта"><button type="button" data-step="distance:1" data-lockable aria-label="Увеличить дистанцию">+</button></div></div>
    <div class="field lens-row"><span>Частые дистанции</span><div class="presetrow" id="distancePresets"><button type="button" data-dist="1" data-lockable>1 м</button><button type="button" data-dist="1.5" data-lockable>1,5 м</button><button type="button" data-dist="2" data-lockable>2 м</button><button type="button" data-dist="3" data-lockable>3 м</button><button type="button" data-dist="5" data-lockable>5 м</button></div></div>
+   <div class="field lens-row"><span>Пресеты кадра · примеры</span>
+    <div class="quick-presets" id="shotPresets">
+     <button type="button" data-preset="close" data-lockable>Крупный</button>
+     <button type="button" data-preset="medium" data-lockable>Средний</button>
+     <button type="button" data-preset="wide" data-lockable>Общий</button>
+     <button type="button" data-preset="dialogue" data-lockable>Диалог</button>
+     <button type="button" data-preset="landscape" data-lockable>Пейзаж</button>
+    </div>
+    <div class="hyperbar"><button type="button" id="setHyperfocal" class="btn accent" data-lockable>◎ Фокус на гиперфокале</button><button type="button" id="focusOnSubject" class="btn smallbtn" data-lockable>Фокус на объект</button></div>
+   </div>
    <div class="control-advanced lens-row hidden" id="advancedControls">
     <div class="divider"></div>
     <div class="section-title"><h2>Настройки камеры</h2></div>
@@ -49,7 +92,8 @@
     <label class="toggle"><input id="customLensToggle" type="checkbox" data-lockable>Использовать другой объектив</label>
     <div id="customLens" class="hidden"><div class="two"><label class="field"><span>Фокусное, мм</span><input id="customFocal" type="number" min="1" max="1200" step="1" value="24" data-lockable></label><label class="field"><span>МДФ, м (от матрицы)</span><input id="customClose" type="number" min="0.01" step="0.01" value="0.20" data-lockable></label></div><label class="field"><span>Открытая диафрагма</span><input id="customMaxA" type="number" min="0.7" max="64" step="0.1" value="1.8" data-lockable></label></div>
     <div class="divider"></div>
-    <label class="field"><span>Рост персонажа, м (симулятор)</span><input id="personHeight" type="number" min="0.5" max="2.5" step="0.05" value="1.75" data-lockable></label>
+    <label class="field"><span>Силуэт в предпросмотре кадра</span><select id="subjectType" data-lockable><option value="standing">Стоящий человек</option><option value="sitting">Сидящий человек</option><option value="object">Предмет на столе</option></select></label>
+    <label class="field"><span>Рост стоящего персонажа, м</span><input id="personHeight" type="number" min="0.5" max="2.5" step="0.05" value="1.75" data-lockable></label>
     <p class="mini-note">Расчёты по модели тонкой линзы. Дистанции фокусировки указываются от плоскости сенсора. Focus breathing и индивидуальные особенности объективов не моделируются. CoC — условный критерий приемлемой резкости.</p>
    </div>
    <div class="control-actions lens-row"><div class="divider"></div><div class="btn-row"><button class="btn primary" type="button" id="saveShot">＋ Сохранить кадр</button><button class="btn ghost" id="resetAll" type="button" data-lockable>Сброс настроек</button></div><p class="mini-note">Настройки автоматически сохраняются в этом браузере. Сайт не требует интернета и внешних библиотек.</p></div>
@@ -62,11 +106,22 @@
    <div id="resultsBody">
     <div class="hero"><div class="label">Глубина резкости · Total DOF</div><div class="big" id="totalValue">—</div><div class="limits"><div class="limit"><div class="title">Ближняя граница · Near</div><div class="val" id="nearValue">—</div></div><div class="limit"><div class="title">Дальняя граница · Far</div><div class="val" id="farValue">—</div></div></div></div>
     <div class="metrics"><div class="metric"><div class="name">Дистанция фокуса</div><div class="value" id="focusValue">—</div></div><div class="metric"><div class="name">Ширина кадра</div><div class="value" id="widthValue">—</div></div><div class="metric"><div class="name">Высота кадра</div><div class="value" id="heightValue">—</div></div></div>
-    <div class="viz"><div class="viz-top"><span class="viz-title">Визуализация</span><div class="tabs" role="tablist" aria-label="Тип визуализации"><button type="button" class="active" data-vis="dof" aria-selected="true">ГРИП</button><button type="button" data-vis="frame" aria-selected="false">Кадр</button></div></div>
-     <div id="dofVisual" class="graphic"><svg id="dofSvg" viewBox="0 0 540 160" role="img" aria-label="Масштабированная схема зоны резкости"></svg><div class="viz-labels"><span id="rangeLeft">—</span><span id="rangeRight">—</span></div><div class="legend"><span><i class="dot"></i>Объект</span><span><i class="dot mint"></i>Фокус</span><span><i class="dot blue"></i>Зона резкости</span></div></div>
+    <div class="viz"><div class="viz-top"><span class="viz-title">Визуализация</span><div class="tabs" role="tablist" aria-label="Тип визуализации"><button type="button" class="active" data-vis="scene" aria-selected="true">Сцена</button><button type="button" data-vis="dof" aria-selected="false">ГРИП</button><button type="button" data-vis="frame" aria-selected="false">Кадр</button></div></div>
+     <div id="sceneVisual" class="scene-card">
+      <div class="scene-scroller"><svg id="sceneSvg" class="scene-svg" viewBox="0 0 880 350" role="img" aria-label="Интерактивная схема сцены сверху: потяни актёров и точку фокуса"></svg></div>
+      <div class="scene-tools"><span class="small" id="sceneRangeLabel">Масштаб</span><button class="btn smallbtn" id="sceneZoomIn" type="button" data-lockable aria-label="Приблизить схему">＋</button><button class="btn smallbtn" id="sceneZoomOut" type="button" data-lockable aria-label="Отдалить схему">−</button><button class="btn smallbtn" id="sceneResetOffsets" type="button" data-lockable>Выровнять актёров</button><button class="btn smallbtn" id="sceneToggleC" type="button" data-lockable>＋ Актёр В</button></div>
+      <div class="scene-actors">
+       <div class="scene-actor" id="sceneActorCardA"><div class="scene-actor-top"><span>А · основной</span><b id="sceneDistTextA">—</b></div><input id="sceneInputA" inputmode="decimal" type="number" min="0.01" step="0.1" aria-label="Дистанция актёра А" data-lockable><div class="scene-status" id="sceneStatusA">—</div></div>
+       <div class="scene-actor" id="sceneActorCardB"><div class="scene-actor-top"><span>Б · второй</span><b id="sceneDistTextB">—</b></div><input id="sceneInputB" inputmode="decimal" type="number" min="0.01" step="0.1" aria-label="Дистанция актёра Б" data-lockable><div class="scene-status" id="sceneStatusB">—</div></div>
+       <div class="scene-actor inactive" id="sceneActorCardC"><div class="scene-actor-top"><span>В · третий</span><b id="sceneDistTextC">—</b></div><input id="sceneInputC" inputmode="decimal" type="number" min="0.01" step="0.1" aria-label="Дистанция актёра В" data-lockable><div class="scene-status" id="sceneStatusC">—</div></div>
+      </div>
+      <div class="scene-cue" id="sceneCue">Перетащи маркеры А и Б вдоль схемы или в сторону. Полоса резкости и границы кадра обновляются сразу.</div>
+      <div class="scene-note">Вид сверху · маркеры условные · зелёный — в зоне ГРИП и внутри кадра. Расстояния — от плоскости сенсора.</div>
+     </div>
+     <div id="dofVisual" class="graphic hidden"><svg id="dofSvg" viewBox="0 0 540 160" role="img" aria-label="Масштабированная схема зоны резкости"></svg><div class="viz-labels"><span id="rangeLeft">—</span><span id="rangeRight">—</span></div><div class="legend"><span><i class="dot"></i>Объект</span><span><i class="dot mint"></i>Фокус</span><span><i class="dot blue"></i>Зона резкости</span></div></div>
      <div id="frameVisual" class="hidden"><div class="frame" id="frameBox"><svg id="frameSvg" viewBox="0 0 1000 562" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Схематичный кадр с силуэтом персонажа"></svg></div><div class="frame-foot"><span class="small">Охват: <b id="frameDims">—</b></span><span class="small">Силуэт схематичный · без перспективы фона</span></div></div>
     </div>
-    <div class="extra" id="extraText">—</div>
+    <div class="extra" id="extraText">—</div><div id="diffractionNotice" class="diffraction hidden" role="status"></div>
    </div>
   </section>
   <section class="panel section-gap"><div class="section-title"><h2>Выбрать объектив</h2><span class="sub">Та же дистанция и диафрагма</span></div><div class="list3" id="lensCompare"></div><p class="help-line">Нажми на объектив, чтобы сразу применить его. Если дистанция меньше МДФ, расчёт для него недоступен.</p></section>
@@ -75,7 +130,7 @@
    <div class="toolcard"><h3>Нужна определённая ГРИП</h3><p class="small">Подобрать диафрагму при текущей дистанции или дистанцию при текущей диафрагме.</p><label class="field"><span id="targetLabel">Желаемая ГРИП, см</span><input type="number" id="targetDOF" value="30" min="0.1" step="1" data-lockable></label><div class="feedback" id="inverseResult" aria-live="polite">—</div><div class="btn-row" style="margin-top:9px"><button id="applyAperture" type="button" class="btn accent" data-lockable>Применить диафрагму</button><button id="applyDistance" type="button" class="btn" data-lockable>Применить дистанцию</button></div></div>
   </section>
   <section class="panel section-gap" id="savedSection"><div class="section-title"><h2>Сохранённые кадры</h2><span class="sub" id="savedCount">0 кадров</span></div><div class="two"><label class="field"><span>Название кадра</span><input id="shotName" type="text" maxlength="100" placeholder="Сцена 01 · крупный план"></label><label class="field"><span>Примечание</span><input id="shotNote" type="text" maxlength="400" placeholder="Фокус на глазах, штатив…"></label></div><div class="btn-row" style="margin-top:12px"><button type="button" id="saveShotBottom" class="btn primary">＋ Сохранить текущий</button><button type="button" id="exportCSV" class="btn">CSV</button><button type="button" id="exportMD" class="btn">Markdown · Obsidian</button><button type="button" id="exportJSON" class="btn ghost">JSON</button><button type="button" id="importJSON" class="btn ghost">Импорт JSON</button><input type="file" id="importInput" accept=".json,application/json" class="hidden" aria-label="Файл JSON для восстановления кадров"></div><div id="shotList" class="shots"></div><div id="storageNotice" class="help-line"></div></section>
-  <footer class="foot">LensKit Field · S5IIX · Модель тонкой линзы, CoC по активному кадру. Это расчёт приемлемой, а не абсолютной резкости. Для критического фокуса проверяй изображение на мониторе камеры. Сохранение доступно локально при разрешённом хранилище браузера. Версия 2.0 · автономный HTML.</footer>
+  <footer class="foot">LensKit Field · S5IIX · Модель тонкой линзы, CoC по активному кадру. Это расчёт приемлемой, а не абсолютной резкости. Для критического фокуса проверяй изображение на мониторе камеры. Сохранение доступно локально при разрешённом хранилище браузера. Версия 3.0 · автономный HTML. Кинематографические пресеты служат отправными точками, а не обязательными настройками съёмки.</footer>
  </main>
 </div>
 </div>
@@ -95,11 +150,14 @@ const MODES = {
  aps179:{label:'APS-C · 17:9',w:23.6,h:23.6*9/17}
 };
 const FS=[1.8,2,2.8,4,5.6,8,11,16,22];
-const DEFAULT = {lens:'50',aperture:2.8,distance:2,bias:0,mode:'ff169',crop:1,units:'m',cocMode:'auto',coc:.028,sensorW:35.6,sensorH:23.8,customLens:false,customFocal:24,customClose:.2,customMaxA:1.8,personHeight:1.75,actorA:2,actorB:2.5,targetDOF:.30,advanced:false,vis:'dof',sun:false,locked:false};
+const DEFAULT = {lens:'50',aperture:2.8,distance:2,bias:0,mode:'ff169',crop:1,units:'m',cocMode:'auto',coc:.028,sensorW:35.6,sensorH:23.8,customLens:false,customFocal:24,customClose:.2,customMaxA:1.8,personHeight:1.75,subjectType:'standing',actorA:2,actorB:2.5,actorC:3.2,offA:0,offB:0.25,offC:-0.3,sceneC:false,sceneScale:1,targetDOF:.30,advanced:false,vis:'scene',sun:false,locked:false};
 function storeGet(k,fallback){try{const t=localStorage.getItem(k);return t===null?fallback:JSON.parse(t)}catch(e){return fallback}}
 function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
-let state={...DEFAULT,...storeGet('lenskit-field-state-v2',{})};
-let shots=storeGet('lenskit-field-shots-v2',[]);if(!Array.isArray(shots))shots=[];
+const existingV3=storeGet('lenskit-field-state-v3',null);
+let state={...DEFAULT,...(existingV3||storeGet('lenskit-field-state-v2',{}))};
+if(!existingV3){state.vis='scene';state.actorA=state.distance;} // Show the new diagram; migrate the principal subject.
+let shots=storeGet('lenskit-field-shots-v3',null);
+if(!Array.isArray(shots))shots=storeGet('lenskit-field-shots-v2',[]);if(!Array.isArray(shots))shots=[];
 let current=null, inversePlan=null, twoPlan=null;
 let storageOk=true;
 const physical = m => state.units==='ft'?m*FT:m;
@@ -136,7 +194,7 @@ function errors(lens,aperture,object,focus,sensor){let e=[];
  if(!Number.isFinite(object)||object<=lens.f/MM||!Number.isFinite(focus)||focus<=lens.f/MM)e.push('Расстояние должно быть больше фокусного расстояния объектива.');
  return e;
 }
-function persist(){storageOk=storeSet('lenskit-field-state-v2',state)&&storeSet('lenskit-field-shots-v2',shots);$('storageNotice').textContent=storageOk?'Сохранено только в этом браузере и на этом устройстве.':'Браузер не разрешает постоянное хранение. Экспортируй кадры в JSON для резервной копии.'}
+function persist(){storageOk=storeSet('lenskit-field-state-v3',state)&&storeSet('lenskit-field-shots-v3',shots);$('storageNotice').textContent=storageOk?'Сохранено только в этом браузере и на этом устройстве.':'Браузер не разрешает постоянное хранение. Экспортируй кадры в JSON для резервной копии.'}
 function updateControls(){
  document.querySelectorAll('[data-lens]').forEach(x=>x.classList.toggle('active',!state.customLens&&x.dataset.lens===state.lens));
  $('aperture').value=String(state.aperture);
@@ -147,9 +205,10 @@ function updateControls(){
  $('cocMode').value=state.cocMode;$('sensorW').value=state.sensorW;$('sensorH').value=state.sensorH;
  $('coc').value=formatValue(state.coc,4);$('customLensToggle').checked=state.customLens;
  $('customFocal').value=state.customFocal;$('customClose').value=state.customClose;$('customMaxA').value=state.customMaxA;
- $('personHeight').value=state.personHeight;
+ $('personHeight').value=state.personHeight;$('subjectType').value=state.subjectType;
  $('actorA').value=formatValue(physical(state.actorA),state.units==='ft'?3:2);
  $('actorB').value=formatValue(physical(state.actorB),state.units==='ft'?3:2);
+ $('sceneInputA').value=formatValue(physical(state.actorA),state.units==='ft'?3:2);$('sceneInputB').value=formatValue(physical(state.actorB),state.units==='ft'?3:2);$('sceneInputC').value=formatValue(physical(state.actorC),state.units==='ft'?3:2);
  $('targetDOF').value=formatValue(state.units==='ft'?state.targetDOF*39.37007874:state.targetDOF*100,1);
  $('distanceLabel').textContent='До объекта, '+lenUnit();$('biasLabel').textContent='Сдвиг фокуса, '+lenUnit();$('actorALabel').textContent='Первый актёр, '+lenUnit();$('actorBLabel').textContent='Второй актёр, '+lenUnit();$('targetLabel').textContent='Желаемая ГРИП, '+fineUnit();
  $('customSensor').classList.toggle('hidden',state.mode!=='custom');$('customLens').classList.toggle('hidden',!state.customLens);
@@ -157,7 +216,8 @@ function updateControls(){
  $('advancedControls').classList.toggle('hidden',!state.advanced);
  $('quickTab').classList.toggle('active',!state.advanced);$('advancedTab').classList.toggle('active',state.advanced);
  $('quickTab').setAttribute('aria-selected',String(!state.advanced));$('advancedTab').setAttribute('aria-selected',String(state.advanced));
- $('dofVisual').classList.toggle('hidden',state.vis!=='dof');$('frameVisual').classList.toggle('hidden',state.vis!=='frame');
+ $('dofVisual').classList.toggle('hidden',state.vis!=='dof');$('frameVisual').classList.toggle('hidden',state.vis!=='frame');$('sceneVisual').classList.toggle('hidden',state.vis!=='scene');
+ $('sceneActorCardC').classList.toggle('inactive',!state.sceneC);$('sceneToggleC').textContent=state.sceneC?'− Убрать актёра В':'＋ Актёр В';
  document.querySelectorAll('[data-vis]').forEach(b=>{const on=b.dataset.vis===state.vis;b.classList.toggle('active',on);b.setAttribute('aria-selected',String(on))});
  $('sunBtn').classList.toggle('active',state.sun);$('appRoot').classList.toggle('sun',state.sun);
  $('lockBtn').textContent=state.locked?'● Разблокировать':'○ Зафиксировать';$('lockBtn').setAttribute('aria-pressed',String(state.locked));
@@ -170,6 +230,7 @@ function update(){const lens=activeLens(),sensor=sensorInfo(),object=state.dista
  $('sensorInfo').textContent=`Активная область: ${fnum(sensor.w,2)} × ${fnum(sensor.h,2)} мм · CoC ${fnum(sensor.coc,4)} мм. Применённый кроп: ×${fnum(state.crop,2)}.`;
  $('setupLabel').textContent=`${fnum(lens.f,0)} мм · f/${fnum(state.aperture,1)} · ${sensor.label}${state.crop>1?' · кроп ×'+fnum(state.crop,2):''}`;
  const errs=errors(lens,state.aperture,object,focus,sensor);
+ const diffraction=$('diffractionNotice');diffraction.classList.toggle('hidden',!Number.isFinite(state.aperture)||state.aperture<11);diffraction.textContent=state.aperture>=11?`△ f/${fnum(state.aperture,1)}: дифракция может снижать мелкую детализацию${state.aperture>=16?' заметнее на сильно закрытой диафрагме':''}. Это ориентировочное предупреждение, не запрет съёмки.`:'';
  const warning=$('warning');warning.classList.toggle('show',errs.length>0);warning.classList.toggle('error',errs.length>0);warning.textContent=errs.join(' ');
  $('resultsBody').classList.toggle('hidden',errs.length>0);
  current=null;
@@ -178,8 +239,8 @@ function update(){const lens=activeLens(),sensor=sensorInfo(),object=state.dista
  const inside=object>=d.near-1e-10&&object<=d.far+1e-10;
  $('focusStatus').textContent=inside?'● Объект в ГРИП':(object<d.near?'▲ Фокус дальше объекта':'▼ Фокус ближе объекта');
  $('focusStatus').style.color=inside?'var(--mint)':'var(--danger)';$('extraText').textContent=`Гиперфокал: ${dist(d.H)} · FOV: ${fnum(fr.angleH,1)}° × ${fnum(fr.angleV,1)}° · Фокус ${state.bias===0?'на объекте':`со сдвигом ${dist(state.bias)}`}.`;
- drawDOF(current);drawFrame(current);
- }else{$('focusStatus').textContent='Проверь параметры';$('focusStatus').style.color='var(--danger)'}
+ drawDOF(current);drawFrame(current);drawScene(current);
+ }else{$('focusStatus').textContent='Проверь параметры';$('focusStatus').style.color='var(--danger)';$('sceneSvg').replaceChildren();}
  renderLensCompare();renderTwo();renderInverse();persist();
 }
 function xmlNum(n){return Number(n.toFixed(2))}
@@ -203,23 +264,143 @@ function drawDOF(cur){const {d,object,focus}=cur;let lo,hi;
   ${!Number.isFinite(d.far)?'<text x="514" y="61" text-anchor="end" fill="#d1f4ff" font-size="19">→ ∞</text>':''}`;
  $('rangeLeft').textContent=`Масштаб от ${dist(lo)}`;$('rangeRight').textContent=`до ${dist(hi)}${!Number.isFinite(d.far)?' (дальше — ∞)':''}`;
 }
-function drawFrame(cur){const {sensor,lens,object,fr}=cur;const aspect=sensor.w/sensor.h;
+function drawFrame(cur){const {sensor,object,fr}=cur;const aspect=sensor.w/sensor.h;
  $('frameBox').style.aspectRatio=String(aspect);$('frameSvg').setAttribute('viewBox',`0 0 1000 ${Math.round(1000/aspect)}`);
- const H=1000/aspect,characterHeight=state.personHeight/fr.h*H;
- const scale=characterHeight/270; const baseY=H/2+190*scale; // camera aimed roughly at the upper torso/face
- // The character is human-shaped vector geometry, scaled against the framing height.
+ const H=1000/aspect;
+ const hM=state.subjectType==='sitting'?1.18:state.subjectType==='object'?.42:state.personHeight;
+ const characterHeight=hM/fr.h*H, scale=characterHeight/270;
+ const baseY=H/2+190*scale;
+ const human=`<circle cx="0" cy="-237" r="30"/><path d="M-42 -199 Q0 -215 42 -199 L48 -105 L30 -90 L29 -12 L7 -12 L3 -91 L-3 -91 L-8 -12 L-30 -12 L-30 -93 L-47 -106 Z"/><path d="M-42 -189 L-73 -112 L-63 -103 L-25 -161 M42 -189 L73 -112 L63 -103 L25 -161" fill="none" stroke-width="18"/><path d="M-20 -12 L-25 0 M20 -12 L25 0" stroke-width="22"/>`;
+ const seated=`<circle cx="0" cy="-236" r="31"/><path d="M-39 -200 Q0 -210 39 -200 L46 -109 L-46 -109Z"/><path d="M-38 -115 L36 -100 L94 -85 L94 -65 L-8 -73 L-30 -40 M-8 -72 L-6 -6" stroke-width="25" fill="none"/><path d="M-36 -173 L-74 -115 M36 -173 L62 -101" stroke-width="18" fill="none"/><path d="M-73 -30 V25 M-73 -30 H72" stroke="#8eb4c3" stroke-width="10" fill="none"/>`;
+ const item=`<rect x="-85" y="-180" width="170" height="185" rx="16"/><rect x="-102" y="-183" width="204" height="10" rx="4" fill="#89a7b8"/>`;
  $('frameSvg').innerHTML=`<defs><linearGradient id="skyField" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1f5269"/><stop offset="1" stop-color="#0b2332"/></linearGradient><clipPath id="frameClip"><rect width="1000" height="${xmlNum(H)}"/></clipPath></defs>
  <g clip-path="url(#frameClip)"><rect width="1000" height="${xmlNum(H)}" fill="url(#skyField)"/>
  <path d="M0 ${xmlNum(H*.71)} H1000" stroke="#5d9cb0" stroke-opacity=".35" stroke-width="2"/>
  <path d="M333 0 V${xmlNum(H)} M667 0 V${xmlNum(H)} M0 ${xmlNum(H/3)} H1000 M0 ${xmlNum(H*2/3)} H1000" stroke="#c7edf7" stroke-opacity=".27" stroke-width="2"/>
- <g transform="translate(500 ${xmlNum(baseY)}) scale(${xmlNum(scale)})" fill="#c4dce9" stroke="#c4dce9" stroke-linejoin="round" stroke-linecap="round">
-  <circle cx="0" cy="-237" r="30" />
-  <path d="M-42 -199 Q0 -215 42 -199 L48 -105 L30 -90 L29 -12 L7 -12 L3 -91 L-3 -91 L-8 -12 L-30 -12 L-30 -93 L-47 -106 Z" />
-  <path d="M-42 -189 L-73 -112 L-63 -103 L-25 -161 M42 -189 L73 -112 L63 -103 L25 -161" fill="none" stroke-width="18"/>
-  <path d="M-20 -12 L-25 0 M20 -12 L25 0" stroke-width="22"/>
- </g><path d="M484 ${xmlNum(H/2)} H516 M500 ${xmlNum(H/2-16)} V${xmlNum(H/2+16)}" stroke="#ffe1a9" stroke-width="2" opacity=".7"/></g>`;
+ <g transform="translate(500 ${xmlNum(baseY)}) scale(${xmlNum(scale)})" fill="#c4dce9" stroke="#c4dce9" stroke-linejoin="round" stroke-linecap="round">${state.subjectType==='sitting'?seated:state.subjectType==='object'?item:human}</g>
+ <path d="M484 ${xmlNum(H/2)} H516 M500 ${xmlNum(H/2-16)} V${xmlNum(H/2+16)}" stroke="#ffe1a9" stroke-width="2" opacity=".7"/></g>`;
  $('frameDims').textContent=`${dist(fr.w)} × ${dist(fr.h)}`;
 }
+
+// Scene geometry: horizontal axis = sensor-to-actor distance; vertical axis = lateral position.
+// A/B/C markers are symbolic, while FOV, focus limits, and numeric calculations use actual distances.
+const SCENE_W=880,SCENE_H=350,SCENE_LEFT=65,SCENE_RIGHT=842,SCENE_CENTER=177;
+let sceneGeo=null,dragging=null,sceneRAF=0;
+const presets={
+ close:{lens:'85',distance:2.8,aperture:2.8,actorB:3.3},
+ medium:{lens:'50',distance:3,aperture:4,actorB:3.6},
+ wide:{lens:'35',distance:5,aperture:5.6,actorB:6},
+ dialogue:{lens:'35',distance:3,aperture:8,actorB:3.6},
+ landscape:{lens:'35',distance:10,aperture:8,actorB:12}
+};
+function sceneDepth(cur){const high=max(cur.object,Number.isFinite(state.actorB)?state.actorB:0,state.sceneC&&Number.isFinite(state.actorC)?state.actorC:0,2.5);return max(2.6,high*1.28)*state.sceneScale}
+function sceneActorInView(cur,z,off){if(!Number.isFinite(z)||z<cur.lens.close||!Number.isFinite(off))return false;
+ const half=framing(cur.lens,cur.sensor,z).w/2;
+ // Marks are schematic; use a small physical half-width to detect full framing.
+ const hw=state.subjectType==='object'?.15:.23;
+ return Math.abs(off)+hw<=half;
+}
+function sceneValid(cur,z,off){return {sharp:z>=cur.d.near-1e-9&&z<=cur.d.far+1e-9,framed:sceneActorInView(cur,z,off)};}
+function drawScene(cur){
+ const svg=$('sceneSvg');const SCENE_W=window.innerWidth<=560?650:880,SCENE_LEFT=window.innerWidth<=560?42:65,SCENE_RIGHT=SCENE_W-38;svg.setAttribute('viewBox',`0 0 ${SCENE_W} 350`);const range=sceneDepth(cur);const span=SCENE_RIGHT-SCENE_LEFT;
+ const x=z=>SCENE_LEFT+z/range*span;
+ const fovHalf=framing(cur.lens,cur.sensor,range).w/2;
+ const py=max(14,min(155,135/max(.16,fovHalf)));
+ const y=off=>SCENE_CENTER-off*py;
+ const worldHalf=z=>max(0,framing(cur.lens,cur.sensor,max(z,cur.lens.f/MM+.001)).w/2);
+ sceneGeo={range,x,py,y,left:SCENE_LEFT,right:SCENE_RIGHT};
+ const valid=(z,off)=>Number.isFinite(z)&&Number.isFinite(off)&&z>=cur.lens.close;
+ const xy=s=>Number.isFinite(s)?xmlNum(s):0;
+ const limitZ=z=>min(range,max(0,z));
+ const zoneLo=limitZ(cur.d.near),zoneHi=limitZ(Number.isFinite(cur.d.far)?cur.d.far:range);
+ const poly=(d1,d2)=>[`${xy(x(d1))},${xy(y(worldHalf(d1)))}`,`${xy(x(d2))},${xy(y(worldHalf(d2)))}`,`${xy(x(d2))},${xy(y(-worldHalf(d2)))}`,`${xy(x(d1))},${xy(y(-worldHalf(d1)))}`].join(' ');
+ let out=`<defs><linearGradient id="sceneWedge" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#275167" stop-opacity=".42"/><stop offset="1" stop-color="#39748e" stop-opacity=".26"/></linearGradient></defs>`;
+ out+=`<rect x="0" y="0" width="${SCENE_W}" height="350" fill="transparent"/>`;
+ for(let i=0;i<=4;i++){const z=range*i/4;out+=`<line x1="${xy(x(z))}" y1="40" x2="${xy(x(z))}" y2="308" stroke="#8baac0" stroke-opacity=".17" stroke-dasharray="4 7"/><text x="${xy(x(z))}" y="332" fill="#c0d6e6" font-size="17" text-anchor="middle">${fnum(physical(z),1)}</text>`;}
+ out+=`<line x1="${SCENE_LEFT}" y1="${SCENE_CENTER}" x2="${SCENE_RIGHT}" y2="${SCENE_CENTER}" stroke="#6f92a8" stroke-dasharray="6 7" opacity=".7"/>`;
+ out+=`<polygon points="${poly(0,range)}" fill="url(#sceneWedge)" stroke="#73b4cf" stroke-width="2.5"/>`;
+ if(zoneHi>zoneLo)out+=`<polygon points="${poly(zoneLo,zoneHi)}" fill="#44afc4" fill-opacity=".38" stroke="#74d4e7" stroke-opacity=".6"/>`;
+ const guide=(z,col)=>{if(z>range||z<0)return '';const xx=x(z);return `<line x1="${xy(xx)}" y1="48" x2="${xy(xx)}" y2="305" stroke="${col}" stroke-width="2" stroke-dasharray="5 5" opacity=".85"/>`};
+ out+=`<text x="${SCENE_LEFT+8}" y="27" fill="#c3e5f3" font-size="15">ГРИП — голубой · фокус — зелёный</text>`;
+ out+=guide(cur.d.near,'#87cbed','Near');if(Number.isFinite(cur.d.far))out+=guide(cur.d.far,'#87cbed','Far');
+ out+=guide(cur.focus,'#8effce','Фокус');
+ if(cur.focus>range)out+=`<text x="${SCENE_RIGHT-4}" y="60" fill="#8effce" font-size="15" text-anchor="end">Фокус дальше схемы →</text>`;
+ if(cur.d.far===Infinity)out+=`<text x="${SCENE_RIGHT-4}" y="86" fill="#b4edfc" font-size="14" text-anchor="end">ГРИП → ∞</text>`;
+ out+=`<g><rect x="39" y="${SCENE_CENTER-15}" width="24" height="30" rx="5" fill="#9bdafa" stroke="#c6ecff" stroke-width="2"/><circle cx="65" cy="${SCENE_CENTER}" r="8" fill="#e1f4ff"/><text x="27" y="${SCENE_CENTER-28}" fill="#d0e8f5" font-size="15">Камера</text></g>`;
+ const actors=[['A',cur.object,state.offA,'#ffd382'],['B',state.actorB,state.offB,'#b39dff'],['C',state.actorC,state.offC,'#ffa3ac']];
+ for(const [key,z,off,col] of actors){if(key==='C'&&!state.sceneC)continue;
+  const v=sceneValid(cur,z,off),xx=x(z),yy=y(off),inRange=valid(z,off)&&z<=range;
+  if(!inRange){out+=`<text x="${SCENE_RIGHT-15}" y="${key==='A'?115:key==='B'?135:155}" text-anchor="end" fill="${col}" font-size="15">${key}: за пределами масштаба</text>`;continue}
+  const stroke=v.sharp&&v.framed?'#83ffbf':v.sharp||v.framed?'#ffe2a5':'#ff858e';
+  out+=`<g data-drag="${key}" transform="translate(${xy(xx)} ${xy(yy)})" role="button" aria-label="Перетащить актёра ${key}" tabindex="0"><circle r="35" class="scene-hit"/><circle r="16" fill="${col}" stroke="${stroke}" stroke-width="5"/><text y="6" text-anchor="middle" fill="#122538" font-size="18" font-weight="900">${key==='A'?'А':key==='B'?'Б':'В'}</text><text x="0" y="-28" fill="${col}" font-size="16" text-anchor="middle" class="scene-label">${fnum(physical(z),1)} ${lenUnit()}</text></g>`;
+ }
+ // A draggable focus handle independent from the actor markers.
+ if(cur.focus<=range){out+=`<g data-drag="focus" transform="translate(${xy(x(cur.focus))} 290)" role="button" aria-label="Передвинуть плоскость фокуса" tabindex="0"><rect x="-38" y="-17" width="76" height="40" rx="12" class="scene-hit"/><rect x="-14" y="-15" width="28" height="29" rx="8" fill="#4b8c78" stroke="#a0ffcf" stroke-width="2"/><text y="5" x="0" fill="#fff" text-anchor="middle" font-size="16">◎</text></g>`;}
+ svg.innerHTML=out;
+ $('sceneRangeLabel').textContent=`Шкала 0–${dist(range,1)}`;
+ $('sceneToggleC').disabled=state.locked;
+ for(const [key,z,off] of actors){const v=sceneValid(cur,z,off);$('sceneDistText'+key).textContent=dist(z,1);
+  $('sceneStatus'+key).textContent=`${v.sharp?'✓ В ГРИП':'× Не в ГРИП'} · ${v.framed?'✓ В кадре':'× Вне кадра'} · бок ${dist(off,2)}`;
+  $('sceneStatus'+key).style.color=v.sharp&&v.framed?'var(--mint)':'var(--amber)';
+ }
+ $('sceneCue').textContent=`Фокус ${dist(cur.focus)} · полоса ГРИП ${dist(cur.d.near)} — ${dist(cur.d.far)}. Передвигай А/Б${state.sceneC?'/В':''} по горизонтали (дистанция) и вертикали (положение в кадре).`;
+}
+function syncSceneInputs(){const dec=state.units==='ft'?3:2;
+ const write=(id,value)=>{const el=$(id);if(document.activeElement!==el)el.value=value};
+ write('sceneInputA',formatValue(physical(state.actorA),dec));
+ write('sceneInputB',formatValue(physical(state.actorB),dec));
+ write('sceneInputC',formatValue(physical(state.actorC),dec));
+ write('distance',formatValue(physical(state.distance),dec));
+ write('actorA',formatValue(physical(state.actorA),dec));
+ write('actorB',formatValue(physical(state.actorB),dec));
+ write('bias',formatValue(physical(state.bias),dec));
+}
+function scenePoint(event){const svg=$('sceneSvg'),m=svg.getScreenCTM();if(!m)return null;const p=svg.createSVGPoint();p.x=event.clientX;p.y=event.clientY;return p.matrixTransform(m.inverse())}
+function sceneApplyPointer(event){if(!sceneGeo||!dragging||state.locked||!current)return;
+ const pos=scenePoint(event);if(!pos)return;
+ const range=sceneGeo.range,z=max(current.lens.close,Math.min(range,(pos.x-sceneGeo.left)/(sceneGeo.right-sceneGeo.left)*range));
+ const val=Math.round(z*100)/100;
+ if(dragging==='focus')state.bias=val-state.distance;
+ else{
+  const lateral=Math.round(max(-20,min(20,(SCENE_CENTER-pos.y)/sceneGeo.py))*100)/100;
+  if(dragging==='A'){state.distance=val;state.actorA=val;state.offA=lateral;}
+  else if(dragging==='B'){state.actorB=val;state.offB=lateral;}
+  else if(dragging==='C'){state.actorC=val;state.offC=lateral;}
+ }
+ syncSceneInputs();
+ if(!sceneRAF)sceneRAF=requestAnimationFrame(()=>{sceneRAF=0;update()});
+}
+$('sceneSvg').addEventListener('pointerdown',event=>{const g=event.target.closest('[data-drag]');if(!g||state.locked)return;dragging=g.dataset.drag;$('sceneSvg').setPointerCapture(event.pointerId);event.preventDefault();sceneApplyPointer(event)});
+$('sceneSvg').addEventListener('pointermove',event=>{if(dragging){event.preventDefault();sceneApplyPointer(event)}});
+function finishSceneDrag(){if(dragging){dragging=null;if(sceneRAF){cancelAnimationFrame(sceneRAF);sceneRAF=0}updateControls();update()}}
+$('sceneSvg').addEventListener('pointerup',finishSceneDrag);$('sceneSvg').addEventListener('pointercancel',finishSceneDrag);$('sceneSvg').addEventListener('lostpointercapture',finishSceneDrag);
+$('sceneSvg').addEventListener('keydown',event=>{
+ const node=event.target.closest('[data-drag]');if(!node||state.locked)return;
+ const key=event.key;if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(key))return;
+ event.preventDefault();const who=node.dataset.drag,step=event.shiftKey?1:.1;
+ if(who==='focus'){
+  if(key==='ArrowLeft'||key==='ArrowRight'){const z=max(current.lens.close,state.distance+state.bias+(key==='ArrowRight'?step:-step));state.bias=Math.round((z-state.distance)*100)/100;}
+ }else{
+  const field=who==='A'?'distance':who==='B'?'actorB':'actorC',offset='off'+who;
+  if(key==='ArrowLeft'||key==='ArrowRight'){state[field]=Math.round(max(current.lens.close,state[field]+(key==='ArrowRight'?step:-step))*100)/100;if(who==='A')state.actorA=state.distance;}
+  else state[offset]=Math.round((state[offset]+(key==='ArrowUp'?step:-step))*100)/100;
+ }
+ updateControls();update();$('sceneSvg').querySelector(`[data-drag="${who}"]`)?.focus();
+});
+for(const [id,key] of [['sceneInputA','actorA'],['sceneInputB','actorB'],['sceneInputC','actorC']]){$(id).addEventListener('input',()=>{state[key]=internal(toNumber($(id).value));if(key==='actorA')state.distance=state.actorA;syncSceneInputs();update()});}
+$('sceneToggleC').addEventListener('click',()=>{if(state.locked)return;state.sceneC=!state.sceneC;updateControls();update()});
+$('sceneResetOffsets').addEventListener('click',()=>{if(state.locked)return;state.offA=state.offB=state.offC=0;update()});
+$('sceneZoomIn').addEventListener('click',()=>{if(state.locked)return;state.sceneScale=max(.35,state.sceneScale/1.4);update()});
+$('sceneZoomOut').addEventListener('click',()=>{if(state.locked)return;state.sceneScale=min(10,state.sceneScale*1.4);update()});
+$('shotPresets').addEventListener('click',e=>{const btn=e.target.closest('[data-preset]');if(!btn||state.locked)return;const p=presets[btn.dataset.preset];if(!p)return;
+ state.customLens=false;state.lens=p.lens;state.aperture=p.aperture;state.distance=p.distance;state.actorA=p.distance;state.actorB=p.actorB;state.bias=0;state.offA=0;state.offB=0;state.vis='scene';
+ if(btn.dataset.preset==='landscape'){const l=activeLens(),se=sensorInfo();state.bias=calcDOF(l,state.aperture,se.coc,state.distance).H-state.distance;}
+ updateControls();update();});
+$('setHyperfocal').addEventListener('click',()=>{if(state.locked)return;const lens=activeLens(),se=sensorInfo();if(!Number.isFinite(lens.f)||!Number.isFinite(state.aperture)||state.aperture<=0||!Number.isFinite(se.coc)||se.coc<=0)return;
+ const H=calcDOF(lens,state.aperture,se.coc,max(state.distance,lens.close)).H;state.bias=H-state.distance;updateControls();update()});
+$('focusOnSubject').addEventListener('click',()=>{if(state.locked)return;state.bias=0;updateControls();update()});
+$('subjectType').addEventListener('change',()=>{state.subjectType=$('subjectType').value;update()});
+
 function renderLensCompare(){const container=$('lensCompare');container.replaceChildren();const se=sensorInfo();for(const [key,lens] of Object.entries(LENSES)){
  const valid=Number.isFinite(state.distance)&&state.distance>=lens.close&&Number.isFinite(state.aperture)&&state.aperture>=lens.wide&&state.aperture<=22&&Number.isFinite(se.coc)&&se.coc>0&&Number.isFinite(se.w)&&se.w>0&&Number.isFinite(state.crop)&&state.crop>=1&&state.crop<=4;
  let dof='—',w='—';if(valid){const focus=state.distance+state.bias;if(focus>=lens.close){const r=calcDOF(lens,state.aperture,se.coc,focus);dof=dofTxt(r.total);w=dist(framing(lens,se,state.distance).w)}}
@@ -262,7 +443,7 @@ function renderInverse(){inversePlan=null;const out=$('inverseResult'),lens=acti
 function recompute(){update();}
 function setLens(key){state.customLens=false;state.lens=key;updateControls();update()}
 function applyAperture(val){if(!Number.isFinite(val))return;state.aperture=val;if(!FS.includes(val)){const opt=$('aperture').querySelector('option[data-dynamic="1"]');if(opt)opt.remove();const o=new Option(`f/${fnum(val,1)}`,String(val));o.dataset.dynamic='1';$('aperture').add(o)}updateControls();update()}
-function takeField(id,key,unit){const v=toNumber($(id).value);state[key]=unit==='length'?internal(v):unit==='centi'?(state.units==='ft'?v/39.37007874:v/100):v;update();}
+function takeField(id,key,unit){const v=toNumber($(id).value);state[key]=unit==='length'?internal(v):unit==='centi'?(state.units==='ft'?v/39.37007874:v/100):v;if(key==='distance')state.actorA=state.distance;if(key==='actorA')state.distance=state.actorA;syncSceneInputs();update();}
 for(const [id,key,unit] of [['distance','distance','length'],['bias','bias','length'],['crop','crop'],['coc','coc'],['sensorW','sensorW'],['sensorH','sensorH'],['customFocal','customFocal'],['customClose','customClose'],['customMaxA','customMaxA'],['personHeight','personHeight'],['actorA','actorA','length'],['actorB','actorB','length'],['targetDOF','targetDOF','centi']]){
  $(id).addEventListener('input',()=>{takeField(id,key,unit);if(id==='bias')$('biasSlider').value=Math.max(-1,Math.min(1,state.bias));});
 }
@@ -275,8 +456,8 @@ $('customLensToggle').addEventListener('change',()=>{state.customLens=$('customL
 $('biasSlider').addEventListener('input',()=>{state.bias=toNumber($('biasSlider').value);$('bias').value=formatValue(physical(state.bias),2);update()});
 $('resetBias').addEventListener('click',()=>{state.bias=0;updateControls();update()});
 $('lensButtons').addEventListener('click',ev=>{const b=ev.target.closest('[data-lens]');if(b&&!state.locked)setLens(b.dataset.lens)});
-$('distancePresets').addEventListener('click',ev=>{const b=ev.target.closest('[data-dist]');if(b&&!state.locked){state.distance=Number(b.dataset.dist);updateControls();update()}});
-for(const b of document.querySelectorAll('[data-step]'))b.addEventListener('click',()=>{if(state.locked)return;const [field,d]=b.dataset.step.split(':'),step=Number(d);if(field==='distance'){state.distance=max(.01,Math.round((state.distance+step*.1)*1000)/1000);updateControls();update()}else{let i=FS.findIndex(f=>Math.abs(f-state.aperture)<1e-6);if(i<0)i=FS.findIndex(f=>f>state.aperture);if(i<0)i=FS.length-1;applyAperture(FS[Math.max(0,Math.min(FS.length-1,i+step))])}});
+$('distancePresets').addEventListener('click',ev=>{const b=ev.target.closest('[data-dist]');if(b&&!state.locked){state.distance=Number(b.dataset.dist);state.actorA=state.distance;updateControls();update()}});
+for(const b of document.querySelectorAll('[data-step]'))b.addEventListener('click',()=>{if(state.locked)return;const [field,d]=b.dataset.step.split(':'),step=Number(d);if(field==='distance'){state.distance=max(.01,Math.round((state.distance+step*.1)*1000)/1000);state.actorA=state.distance;updateControls();update()}else{let i=FS.findIndex(f=>Math.abs(f-state.aperture)<1e-6);if(i<0)i=FS.findIndex(f=>f>state.aperture);if(i<0)i=FS.length-1;applyAperture(FS[Math.max(0,Math.min(FS.length-1,i+step))])}});
 $('quickTab').addEventListener('click',()=>{state.advanced=false;updateControls();persist()});
 $('advancedTab').addEventListener('click',()=>{state.advanced=true;updateControls();persist()});
 for(const b of document.querySelectorAll('[data-vis]'))b.addEventListener('click',()=>{state.vis=b.dataset.vis;updateControls();update()});
@@ -285,7 +466,7 @@ $('lockBtn').addEventListener('click',()=>{state.locked=!state.locked;updateCont
 $('resetAll').addEventListener('click',()=>{if(!confirm('Сбросить параметры съёмки? Сохранённые кадры останутся.'))return;const sun=state.sun,shotsMode=state.advanced;state={...DEFAULT,sun,advanced:shotsMode};updateControls();update()});
 $('applyTwo').addEventListener('click',()=>{if(!twoPlan||state.locked)return;state.distance=state.actorA;state.bias=twoPlan.focus-state.actorA;applyAperture(twoPlan.aperture);updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});
 $('applyAperture').addEventListener('click',()=>{if(inversePlan&&inversePlan.aperture!==null&&!state.locked)applyAperture(inversePlan.aperture)});
-$('applyDistance').addEventListener('click',()=>{if(!inversePlan||inversePlan.distance===null||state.locked)return;state.distance=inversePlan.distance;state.bias=0;updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});
+$('applyDistance').addEventListener('click',()=>{if(!inversePlan||inversePlan.distance===null||state.locked)return;state.distance=inversePlan.distance;state.actorA=state.distance;state.bias=0;updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function shotData(){const l=activeLens(),se=sensorInfo();const obj={...state};delete obj.locked;return {state:obj,derived:current?{lens:l.f,aperture:state.aperture,near:current.d.near,far:current.d.far,dof:current.d.total,focus:current.focus,width:current.fr.w,height:current.fr.h,hyperfocal:current.d.H,mode:se.label,coc:se.coc}:null}}
 function save(){if(!current){alert('Сначала укажи допустимые параметры для расчёта.');return}if(shots.length>=300){alert('Достигнут предел 300 кадров. Экспортируй данные и удали ненужные карточки.');return}
@@ -294,13 +475,13 @@ $('saveShot').addEventListener('click',save);$('saveShotBottom').addEventListene
 function renderShots(){const count=shots.length;$('savedCount').textContent=`${count} ${count%10===1&&count%100!==11?'кадр':(count%10>=2&&count%10<=4&&(count%100<12||count%100>14)?'кадра':'кадров')}`;const list=$('shotList');list.replaceChildren();if(!count){const p=document.createElement('p');p.className='small';p.textContent='Пока нет сохранённых кадров. Добавь первый, чтобы быстро возвращаться к настройкам сцены.';list.append(p);return}
  shots.forEach((shot,index)=>{const card=document.createElement('article');card.className='shot';const label=document.createElement('div');label.className='shot-title';label.textContent=shot.name;const info=document.createElement('div');info.className='shot-info';const s=shot.state||{};info.textContent=`${shot.derived?fnum(shot.derived.lens,0)+' мм':'—'} · f/${fnum(s.aperture||0,1)} · ${fnum(s.distance||0,2)} м · ${shot.derived?.mode||''}`;
  card.append(label,info);if(shot.note){const note=document.createElement('p');note.textContent=shot.note;card.append(note)}
- const actions=document.createElement('div');actions.className='shot-actions';const load=document.createElement('button');load.className='btn smallbtn';load.textContent='Загрузить';load.addEventListener('click',()=>{state={...DEFAULT,...shot.state,locked:false};updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});const del=document.createElement('button');del.className='btn smallbtn danger';del.textContent='Удалить';del.addEventListener('click',()=>{if(confirm(`Удалить «${shot.name}»?`)){shots=shots.filter(x=>x.id!==shot.id);renderShots();persist()}});actions.append(load,del);card.append(actions);list.append(card)})}
+ const actions=document.createElement('div');actions.className='shot-actions';const load=document.createElement('button');load.className='btn smallbtn';load.textContent='Загрузить';load.addEventListener('click',()=>{state={...DEFAULT,...shot.state,locked:false};state.actorA=state.distance;updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});const del=document.createElement('button');del.className='btn smallbtn danger';del.textContent='Удалить';del.addEventListener('click',()=>{if(confirm(`Удалить «${shot.name}»?`)){shots=shots.filter(x=>x.id!==shot.id);renderShots();persist()}});actions.append(load,del);card.append(actions);list.append(card)})}
 function download(name,type,txt){const blob=new Blob(['\ufeff'+txt],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},1200)}
 function csvField(x){const t=x===undefined||x===null?'':String(x);return '"'+t.replace(/"/g,'""')+'"'}
 function csv(){const collection=shots.length?shots:[{name:'Текущий кадр',note:'',time:new Date().toISOString(),...shotData()}];const keys=['name','time','camera','focal_mm','aperture','object_m','bias_m','focus_m','near_m','far_m','total_dof_m','hyperfocal_m','frame_width_m','frame_height_m','mode','coc_mm','note'];const rows=collection.map(s=>[s.name,s.time,'Panasonic S5IIX',s.derived?.lens,s.state.aperture,s.state.distance,s.state.bias,s.derived?.focus,s.derived?.near,s.derived?.far,s.derived?.dof,s.derived?.hyperfocal,s.derived?.width,s.derived?.height,s.derived?.mode,s.derived?.coc,s.note]);download('LensKit_shots.csv','text/csv',[keys.map(csvField).join(','),...rows.map(r=>r.map(csvField).join(','))].join('\r\n'))}
 function md(){const collection=shots.length?shots:[{name:'Текущий кадр',note:'',time:new Date().toISOString(),...shotData()}];let content='---\ntitle: "LensKit — съёмочные кадры"\ntags: [кино, съемка, lenskit]\n---\n\n# Съёмочные кадры · Panasonic S5IIX\n\n';for(const s of collection){const d=s.derived||{};content+=`## ${s.name.replace(/[\r\n]/g,' ')}\n\n- **Объектив:** ${d.lens||'—'} мм\n- **Диафрагма:** f/${s.state.aperture}\n- **Дистанция объекта:** ${s.state.distance} м\n- **Смещение фокуса:** ${s.state.bias} м\n- **Дистанция фокуса:** ${d.focus??'—'} м\n- **ГРИП:** ${d.dof??'—'} м (Near ${d.near??'—'} м · Far ${d.far??'—'} м)\n- **Охват:** ${d.width??'—'} × ${d.height??'—'} м\n- **Режим:** ${d.mode||'—'}\n- **CoC:** ${d.coc??'—'} мм\n${s.note?'\n**Заметка:** '+s.note.replace(/\r\n?/g,'\n')+'\n':''}\n---\n\n`}
  download('LensKit_shots.md','text/markdown',content)}
-$('exportCSV').addEventListener('click',csv);$('exportMD').addEventListener('click',md);$('exportJSON').addEventListener('click',()=>{download('LensKit_shots.json','application/json',JSON.stringify({app:'LensKit Field',version:2,exported:new Date().toISOString(),shots},null,2))});
+$('exportCSV').addEventListener('click',csv);$('exportMD').addEventListener('click',md);$('exportJSON').addEventListener('click',()=>{download('LensKit_shots.json','application/json',JSON.stringify({app:'LensKit Field',version:3,exported:new Date().toISOString(),shots},null,2))});
 $('importJSON').addEventListener('click',()=>$('importInput').click());
 $('importInput').addEventListener('change',async()=>{
  const file=$('importInput').files?.[0];if(!file)return;
@@ -309,7 +490,7 @@ $('importInput').addEventListener('change',async()=>{
  catch(err){alert('Не удалось импортировать кадры: '+err.message)}finally{$('importInput').value=''}
 });
 // Sanitise possibly stale stored state and initialise the DOM.
-if(!LENSES[state.lens])state.lens='50';if(!MODES[state.mode]&&state.mode!=='custom')state.mode='ff169';if(!['m','ft'].includes(state.units))state.units='m';if(!['auto','manual'].includes(state.cocMode))state.cocMode='auto';if(!['dof','frame'].includes(state.vis))state.vis='dof';
+if(!LENSES[state.lens])state.lens='50';if(!MODES[state.mode]&&state.mode!=='custom')state.mode='ff169';if(!['m','ft'].includes(state.units))state.units='m';if(!['auto','manual'].includes(state.cocMode))state.cocMode='auto';if(!['dof','frame','scene'].includes(state.vis))state.vis='scene';if(!['standing','sitting','object'].includes(state.subjectType))state.subjectType='standing';if(!Number.isFinite(state.sceneScale)||state.sceneScale<.35||state.sceneScale>10)state.sceneScale=1;if(!Number.isFinite(state.actorC)||state.actorC<=0)state.actorC=3.2;for(const k of ['offA','offB','offC'])if(!Number.isFinite(state[k]))state[k]=0;
 if(!FS.includes(state.aperture)&&Number.isFinite(state.aperture)){const opt=new Option(`f/${fnum(state.aperture,1)}`,String(state.aperture));opt.dataset.dynamic='1';$('aperture').add(opt)}
 updateControls();renderShots();update();
 // Re-render on new sizes to keep diagrams crisp and framing responsive.
