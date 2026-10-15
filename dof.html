@@ -1,503 +1,320 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>F8-like LensKit — Panasonic S5IIX (35/50/85mm)</title>
-<link rel="icon" type="image/png" href="favicon.png">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="favicon.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="favicon.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="favicon.png">
-
-  <!-- Включение режима веб-приложения на iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Мой сайт">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a111d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LensKit">
+<title>LensKit · Panasonic S5IIX · Операторский калькулятор</title>
 <style>
-  /* Minimalist dark theme inspired by F8 */
-  :root{
-    --bg: #05121a;
-    --panel: #081623;
-    --muted: #94a3b8;
-    --accent: #73d0ff;
-    --accent-2: #7ef0c2;
-    --glass: rgba(255,255,255,0.03);
-    --card-shadow: 0 8px 40px rgba(2,8,12,0.6);
-    font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-    color: #eaf5ff;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,#03121a 0%, #051827 100%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-  .container{max-width:1200px;margin:22px auto;padding:20px;display:grid;grid-template-columns:360px 1fr;gap:20px}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;box-shadow:var(--card-shadow);border:1px solid rgba(255,255,255,0.03)}
-  h1{margin:0;font-size:18px}
-  p.lead{margin:8px 0 14px;color:var(--muted);font-size:13px}
-  label{display:block;color:var(--muted);font-size:12px;margin-top:12px}
-  select,input[type="number"],input[type="range"]{width:100%;padding:8px;border-radius:8px;border:none;background:var(--glass);color:var(--accent);font-weight:700}
-  .lens-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-  .pill{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--accent);font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
-  .pill.active{background:linear-gradient(90deg,var(--accent),#8dd9ff);color:#042033}
-  .row{display:flex;gap:10px}
-  .col{flex:1}
-  .small{font-size:12px;color:var(--muted)}
-  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
-  .tile{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px}
-  .tile .label{font-size:12px;color:var(--muted)}
-  .canvas-wrap{margin-top:12px}
-  canvas{width:100%;height:320px;border-radius:8px;background:linear-gradient(180deg,#031f27,#021019)}
-  button{background:linear-gradient(90deg,var(--accent),#8bd9ff);border:none;padding:10px 14px;border-radius:10px;font-weight:800;color:#05242f;cursor:pointer;margin-top:10px}
-  .footer{margin-top:12px;color:var(--muted);font-size:12px}
-  .controls{display:flex;flex-direction:column;gap:8px}
-  .inline{display:flex;gap:8px;align-items:center}
-  .kbd{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;color:var(--accent);font-weight:800;font-size:13px}
-  @media(max-width:980px){
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 8px;
-    gap: 8px;
-  }
-
-  /* Порядок блоков */
-  [aria-label="results"] {
-    order: 1;
-    flex-shrink: 0;
-  }
-
-  [aria-label="results"] .canvas-wrap {
-    margin-top: 6px;
-  }
-
-  [aria-label="results"] canvas {
-    height: 160px;
-  }
-
-  [aria-label="controls"] {
-    order: 2;
-    overflow-y: auto;
-    flex: 1;
-  }
-
-  /* Уплотнение элементов */
-  .controls {
-    gap: 4px;
-  }
-
-  label {
-    font-size: 11px;
-    margin-top: 6px;
-  }
-
-  input[type="number"],
-  input[type="range"],
-  select {
-    font-size: 13px;
-    padding: 6px;
-  }
-
-  button {
-    padding: 8px 10px;
-    font-size: 13px;
-  }
-
-  h1 {
-    font-size: 16px;
-  }
-
-  p.lead {
-    font-size: 12px;
-    margin-bottom: 8px;
-  }
-
-  .metrics {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 6px;
-  }
-
-  .tile {
-    padding: 6px;
-  }
-
-  .tile .label {
-    font-size: 11px;
-  }
-
-  .footer {
-    font-size: 11px;
-  }
-
-  /* Скрыть часть второстепенных подписей для компактности */
-  .inline .small {
-    display: none;
-  }
-
-  /* Основные параметры наверху в блоке controls */
-  #focal, #aperture, #distance {
-    font-weight: 700;
-    color: var(--accent);
-    background: rgba(255,255,255,0.04);
-  }
-
-  /* Контейнер прокручивается, но всё в одном экране */
-  [aria-label="controls"]::-webkit-scrollbar {
-    width: 4px;
-  }
-  [aria-label="controls"]::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.08);
-    border-radius: 2px;
-  }
-}
+:root{color-scheme:dark;--bg:#08101b;--surface:#101c2b;--surface2:#152436;--surface3:#1b3043;--line:#2b4054;--text:#f0f6fc;--muted:#a3b5c5;--blue:#8edaff;--mint:#77e3bd;--amber:#ffd382;--danger:#ff9a9a;--shadow:0 12px 32px #01081255;--radius:17px;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 25% -10%,#16324a 0,transparent 55%),var(--bg);color:var(--text);font-size:15px;line-height:1.35}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.42;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}input,select,textarea{background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px 12px;min-height:45px;width:100%}input:disabled,select:disabled{opacity:.6}input[type=number]{font-variant-numeric:tabular-nums}select{cursor:pointer}input[type=range]{accent-color:var(--blue);padding:0;min-height:28px}::placeholder{color:#8194a6}.app{max-width:1430px;margin:auto;padding:18px 18px 32px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.brand{display:flex;align-items:center;gap:12px}.brandmark{display:grid;place-items:center;width:40px;height:40px;border:1px solid #5babc9;border-radius:13px;background:#102c3d;color:var(--blue);font-size:21px;font-weight:900;letter-spacing:-2px}.brand h1{font-size:21px;line-height:1.1;margin:0;letter-spacing:-.6px}.brand small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.layout{display:grid;grid-template-columns:minmax(320px,375px) minmax(0,1fr);align-items:start;gap:15px}.panel{background:linear-gradient(160deg,#142234 0%,var(--surface) 65%);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);min-width:0}.panel+.panel{margin-top:14px}.controls{position:sticky;top:12px}.small{font-size:12px;color:var(--muted)}.caption{font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.section-title{display:flex;justify-content:space-between;align-items:center;margin:0 0 13px;gap:8px}.section-title h2{font-size:16px;margin:0;letter-spacing:-.2px}.section-title .sub{color:var(--muted);font-size:12px}.field{display:block;margin:14px 0 0}.field>span:first-child,.field>label:first-child{display:block;color:var(--muted);font-size:12px;font-weight:650;margin-bottom:7px}.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.seg button{border:1px solid var(--line);background:var(--surface2);border-radius:12px;min-height:53px;color:var(--text);font-size:17px;font-weight:800}.seg button.active{color:#071721;background:var(--blue);border-color:var(--blue)}.seg button small{font-size:10px;font-weight:700;display:block;opacity:.8}.presetrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.presetrow button{background:var(--surface2);border:1px solid var(--line);border-radius:9px;min-height:42px;color:var(--text);font-weight:750;font-size:13px}.presetrow button.active{background:#245d6f;border-color:var(--blue);color:#fff}.numbers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stepper{display:flex;gap:6px}.stepper input{min-width:0;text-align:center;font-size:20px;font-weight:800;padding:6px}.stepper button{flex:0 0 43px;min-height:46px;border:1px solid var(--line);border-radius:11px;color:var(--blue);background:var(--surface2);font-size:24px}.btn{border:1px solid var(--line);color:var(--text);background:var(--surface2);border-radius:11px;min-height:43px;padding:9px 13px;font-size:13px;font-weight:750}.btn.primary{background:var(--blue);color:#071825;border-color:var(--blue)}.btn.accent{background:#154737;border-color:#327d67;color:#abffe4}.btn.ghost{background:transparent}.btn.smallbtn{min-height:37px;padding:7px 10px}.btn.active{background:#1e5668;border-color:#80d0eb}.btn.danger{color:var(--danger)}.btn-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.divider{height:1px;background:var(--line);margin:16px 0}.toggle{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:var(--muted)}.toggle input{width:18px;min-height:18px;height:18px;accent-color:var(--blue)}.mini-note{color:var(--muted);font-size:11px;line-height:1.48}.alert{display:none;background:#472c20;border:1px solid #aa6740;color:#ffe2bf;border-radius:11px;padding:11px 13px;font-size:13px;margin-top:12px}.alert.show{display:block}.alert.error{background:#49252a;border-color:#b8616a;color:#ffd9df}.result-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}.pill{padding:6px 9px;border-radius:999px;font-size:11px;font-weight:800;background:#1f3e48;color:#a5ffe3}.hero{margin-top:12px;border:1px solid #35536a;background:radial-gradient(ellipse at 20% 0,#163e52 0,transparent 70%),#102536;border-radius:15px;padding:18px 19px 16px}.hero .label{color:#c3dbe7;letter-spacing:.09em;text-transform:uppercase;font-size:12px;font-weight:750}.big{font-size:clamp(42px,5vw,66px);line-height:1.05;letter-spacing:-2px;font-weight:850;margin:7px 0;color:#fff;font-variant-numeric:tabular-nums}.limits{display:grid;grid-template-columns:1fr 1fr;gap:8px;border-top:1px solid #35536a;padding-top:13px;margin-top:13px}.limit .title{color:var(--muted);font-size:12px}.limit .val{font-size:24px;font-weight:800;margin-top:2px;letter-spacing:-.5px;font-variant-numeric:tabular-nums}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:10px 0 12px}.metric{border:1px solid var(--line);background:#112232;border-radius:12px;padding:11px 12px;min-width:0}.metric .name{font-size:11px;color:var(--muted)}.metric .value{font-size:20px;font-weight:800;margin-top:6px;line-height:1.15;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.metric .help{font-size:11px;color:var(--muted);margin-top:4px}.viz{background:#0b1a2a;border:1px solid #31495b;border-radius:13px;margin-top:11px;overflow:hidden}.viz-top{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;gap:8px}.viz-title{font-size:13px;font-weight:850}.tabs{display:flex;gap:3px;border:1px solid var(--line);padding:3px;border-radius:10px;background:#101f30}.tabs button{background:transparent;color:var(--muted);border:0;border-radius:7px;padding:7px 11px;min-height:33px;font-size:12px;font-weight:800}.tabs button.active{background:#315268;color:#fff}.graphic{padding:4px 13px 11px}.graphic svg{width:100%;display:block}.viz-labels{display:flex;justify-content:space-between;gap:8px;margin-top:8px;color:var(--muted);font-size:11px}.legend{display:flex;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:11px}.dot{display:inline-block;height:8px;width:8px;border-radius:50%;margin-right:5px;background:var(--amber)}.dot.mint{background:var(--mint)}.dot.blue{background:var(--blue)}.frame{margin:0 12px 0;background:#102733;border:1px solid #567182;overflow:hidden;position:relative;border-radius:8px;display:grid;place-items:center}.frame svg{width:100%;height:100%;display:block}.frame-foot{padding:9px 13px 12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.extra{margin-top:10px;color:var(--muted);font-size:12px}.section-gap{margin-top:16px}.list3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.lens-card{padding:12px 10px;background:#122537;border:1px solid var(--line);border-radius:12px;min-width:0;text-align:left;color:var(--text)}.lens-card.current{border-color:var(--blue);box-shadow:inset 0 0 0 1px #8edaff66}.lens-card .f{font-size:22px;font-weight:900;color:var(--blue)}.lens-card .kv{font-size:12px;margin-top:6px;color:var(--muted)}.lens-card .kv strong{display:block;font-size:14px;color:var(--text);margin-top:2px}.toolcard{margin-top:14px;border:1px solid var(--line);border-radius:13px;background:#102030;padding:14px}.toolcard h3{font-size:15px;margin:0 0 6px}.toolcard .feedback{margin-top:10px;background:#192e40;border-radius:10px;padding:12px;line-height:1.5;font-size:13px;min-height:52px}.feedback .strong{font-size:20px;font-weight:850;color:var(--mint)}.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:9px;margin-top:12px}.shot{background:#152738;border:1px solid var(--line);border-radius:12px;padding:12px;min-width:0}.shot .shot-title{font-weight:800;overflow-wrap:anywhere}.shot .shot-info{font-size:12px;color:var(--muted);margin:6px 0 10px}.shot p{font-size:12px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.shot-actions{display:flex;gap:6px;flex-wrap:wrap}.foot{margin-top:17px;color:var(--muted);font-size:11px;line-height:1.6}.help-line{font-size:12px;color:var(--muted);margin-top:7px}.tagline{font-size:11px;color:var(--muted);margin-top:2px}.hidden{display:none!important}.sun{--bg:#edf4f8;--surface:#ffffff;--surface2:#e5f0f7;--surface3:#d2e6f1;--line:#90b0c4;--text:#0c2030;--muted:#37546a;--blue:#17628a;--mint:#16775b;--amber:#a35d00;--danger:#a82332;--shadow:0 6px 18px #35566b25;color-scheme:light;background:#eaf2f8}.sun .panel{background:#fff}.sun .hero{background:#d6edf5;border-color:#6ba3bb}.sun .hero .label,.sun .big{color:#0d2537}.sun .limits{border-color:#8ab9ca}.sun .metric,.sun .viz,.sun .toolcard,.sun .lens-card,.sun .shot,.sun .toolcard .feedback{background:#eaf3f8}.sun .metric .value,.sun .lens-card .kv strong{color:#0b2634}.sun .btn,.sun input,.sun select,.sun textarea,.sun .seg button,.sun .presetrow button{background:#e5f0f7;color:#102a3b}.sun .btn.primary,.sun .seg button.active{color:#fff;background:#17628a}.sun .frame{background:#d4e3ec}.sun .tabs{background:#dcebf3}.sun .tabs button.active{background:#17628a;color:#fff}.sun .lens-card.current{border-color:#17628a}.sun .pill{background:#d0efdf;color:#166745}.sun .alert{background:#ffeedc;color:#6b360d}.sun .alert.error{background:#ffe7e9;color:#77212a}.sun .lens-card .f{color:#17628a}
+@media(min-width:1120px){.controls{max-height:calc(100vh - 24px);overflow-y:auto;scrollbar-width:thin}.app{padding-top:21px}}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.controls{position:static}.main{min-width:0}.panel{padding:15px}.controls .control-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.controls .lens-row{grid-column:1/-1}.controls .control-advanced{grid-column:1/-1}.controls .control-actions{grid-column:1/-1}}
+@media(max-width:560px){.app{padding:10px 10px 25px}.top{margin:3px 3px 10px}.brandmark{width:35px;height:35px}.brand h1{font-size:19px}.brand small{font-size:10px}.toolbar{gap:5px}.toolbar .btn{padding:7px 8px;font-size:12px;min-height:37px}.panel{padding:12px;border-radius:14px}.controls .control-fields{display:block}.controls .field{margin-top:11px}.hero{padding:13px 15px;margin-top:9px}.big{font-size:48px;margin:5px 0}.limit .val{font-size:21px}.metrics{gap:6px}.metric{padding:9px 8px}.metric .value{font-size:17px}.metric .name{font-size:10px}.list3{gap:5px}.lens-card{padding:10px 7px}.lens-card .f{font-size:20px}.lens-card .kv{font-size:11px}.lens-card .kv strong{font-size:12px}.toolcard{padding:11px}.tabs button{padding:6px 9px}.brand{gap:7px}}
+@media(prefers-reduced-motion:no-preference){button{transition:background .14s ease,border-color .14s ease,transform .08s}button:active:not(:disabled){transform:scale(.98)}}
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card" role="region" aria-label="controls">
-      <!-- <h1>LensKit — DOF & FOV для твоей системы</h1>
-      <p class="lead">Panasonic S5IIX (Full Frame). Оптика: <strong>35 / 50 / 85 mm (ƒ/1.8)</strong>. Полный DOF-калькулятор + bias (сдвиг плоскости фокуса) + экспорт.</p> -->
-
-      <div class="controls">
-        <label>Формат / сенсор</label>
-        <select id="format">
-          <option value="ff">Full Frame — 36.0 × 24.0 мм (Panasonic S5IIX)</option>
-          <option value="s35">Super35 — crop ≈ 1.5 (24.0 × 16.0 мм)</option>
-          <option value="custom">Пользовательский</option>
-        </select>
-
-        <div id="customBlock" style="display:none">
-          <label>Ширина сенсора (мм)</label>
-          <input type="number" id="sensorW" value="36" step="0.01">
-          <label>Высота сенсора (мм)</label>
-          <input type="number" id="sensorH" value="24" step="0.01">
-          <label>CoC (мм)</label>
-          <input type="number" id="coc" value="0.030" step="0.001">
-        </div>
-
-        <label>Выбери объектив</label>
-        <div class="lens-pills" id="lensPills">
-          <div class="pill" data-f="35" data-max="1.8">35 mm ƒ/1.8</div>
-          <div class="pill active" data-f="50" data-max="1.8">50 mm ƒ/1.8</div>
-          <div class="pill" data-f="85" data-max="1.8">85 mm ƒ/1.8</div>
-        </div>
-
-        <label>Фокусное (мм)</label>
-        <input type="number" id="focal" value="50" step="0.1" min="1">
-
-        <label>Диафрагма (ƒ)</label>
-        <input type="number" id="aperture" value="5.6" step="0.1" min="0.7">
-
-        <label>Дистанция до объекта</label>
-        <div class="row">
-          <div class="col">
-            <input type="number" id="distance" value="2.00" step="0.01" min="0.01">
-          </div>
-          <div class="col">
-            <select id="units"><option value="m">м</option><option value="ft">ft</option></select>
-          </div>
-        </div>
-
-        <label>Bias — сдвиг плоскости фокуса (м) <span class="small">положительное — фокус дальше объекта; отрицательное — ближе к камере</span></label>
-        <input type="range" id="bias" min="-2" max="2" step="0.01" value="0">
-        <div class="inline"><div class="kbd" id="biasVal">0.00 м</div><div class="small" style="margin-left:6px;color:var(--muted)">Сдвиг влияет только на позицию плоскости фокуса (object distance + bias = focus distance)</div></div>
-
-        <label>Опции</label>
-        <div class="inline">
-          <button id="calc">Рассчитать</button>
-          <button id="exportCsv">Экспорт CSV</button>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:6px;align-items:center;">
-          <button id="resetBiasBtn" style="background:linear-gradient(90deg,#ff8a65,#ffb085);">Сбросить Bias</button>
-        </div>
-
-        <div class="footer">CoC по умолчанию: 0.030 мм (Full Frame). Для кинопроизводства можно менять CoC вручную.</div>
-      </div>
-    </div>
-
-    <div class="card" role="region" aria-label="results">
-      <!-- <h1>Результаты</h1>
-      <p class="lead">Near / Far / Total DOF, Hyperfocal, FOV и визуализация плоскости фокуса относительно объекта.</p> -->
-
-      <div class="metrics" id="metrics">
-        <div class="tile"><div class="label">Near</div><div id="near" style="font-weight:800;font-size:16px">—</div></div>
-        <div class="tile"><div class="label">Far</div><div id="far" style="font-weight:800;font-size:16px">—</div></div>
-        <div class="tile"><div class="label">Total DOF</div><div id="total" style="font-weight:800;font-size:16px">—</div></div>
-        <div class="tile"><div class="label">Hyperfocal</div><div id="hyper" style="font-weight:800;font-size:16px">—</div></div>
-        <div class="tile"><div class="label">FOV (H × V × D)</div><div id="fov" style="font-weight:800;font-size:14px">—</div></div>
-        <div class="tile"><div class="label">Focus distance used</div><div id="focusUsed" style="font-weight:800;font-size:14px">—</div></div>
-      </div>
-
-      <div class="canvas-wrap">
-        <canvas id="vis" aria-label="visualization"></canvas>
-      </div>
-
-      <div class="footer">Алгоритмы основаны на стандартных оптических формулах. Bias = смещение плоскости фокуса (focusDistance = objectDistance + bias).</div>
-    </div>
+<div id="appRoot" class="app">
+<header class="top">
+ <div class="brand"><div class="brandmark" aria-hidden="true">L<span style="font-size:13px">K</span></div><div><h1>LensKit <span style="font-size:12px;color:var(--muted);font-weight:700">FIELD</span></h1><small>Panasonic S5IIX · Операторский калькулятор</small></div></div>
+ <div class="toolbar"><button class="btn smallbtn" id="sunBtn" type="button" aria-label="Высокая контрастность">☀ Контраст</button><button class="btn smallbtn" id="lockBtn" type="button" aria-pressed="false">○ Зафиксировать</button></div>
+</header>
+<div class="layout">
+ <aside class="controls panel" id="controlPanel">
+  <div class="section-title"><h2>Параметры съёмки</h2><div class="tabs" role="tablist" aria-label="Режим настройки"><button class="active" type="button" id="quickTab" aria-selected="true">Быстрый</button><button type="button" id="advancedTab" aria-selected="false">Расширенный</button></div></div>
+  <div class="control-fields">
+   <div class="lens-row field"><span>Объектив</span><div class="seg" id="lensButtons"><button type="button" data-lens="35" data-lockable>35<small>мм · f/1.8</small></button><button type="button" data-lens="50" class="active" data-lockable>50<small>мм · f/1.8</small></button><button type="button" data-lens="85" data-lockable>85<small>мм · f/1.8</small></button></div></div>
+   <div class="field"><span>Диафрагма</span><div class="stepper"><button type="button" data-step="aperture:-1" data-lockable aria-label="Уменьшить диафрагменное число">−</button><select id="aperture" aria-label="Диафрагма" data-lockable><option value="1.8">f/1.8</option><option value="2">f/2</option><option value="2.8" selected>f/2.8</option><option value="4">f/4</option><option value="5.6">f/5.6</option><option value="8">f/8</option><option value="11">f/11</option><option value="16">f/16</option><option value="22">f/22</option></select><button type="button" data-step="aperture:1" data-lockable aria-label="Увеличить диафрагменное число">+</button></div></div>
+   <div class="field"><span id="distanceLabel">До объекта, м</span><div class="stepper"><button type="button" data-step="distance:-1" data-lockable aria-label="Уменьшить дистанцию">−</button><input type="number" id="distance" inputmode="decimal" min="0.01" step="0.1" value="2" data-lockable aria-label="Дистанция до объекта"><button type="button" data-step="distance:1" data-lockable aria-label="Увеличить дистанцию">+</button></div></div>
+   <div class="field lens-row"><span>Частые дистанции</span><div class="presetrow" id="distancePresets"><button type="button" data-dist="1" data-lockable>1 м</button><button type="button" data-dist="1.5" data-lockable>1,5 м</button><button type="button" data-dist="2" data-lockable>2 м</button><button type="button" data-dist="3" data-lockable>3 м</button><button type="button" data-dist="5" data-lockable>5 м</button></div></div>
+   <div class="control-advanced lens-row hidden" id="advancedControls">
+    <div class="divider"></div>
+    <div class="section-title"><h2>Настройки камеры</h2></div>
+    <label class="field"><span>Режим / активная область сенсора</span><select id="mode" data-lockable>
+     <option value="ff169">Full Frame · 16:9 (4K / 5.9K)</option><option value="ff32">Full Frame · 3:2 (6K Open Gate)</option><option value="ff179">Full Frame · 17:9 (C4K / 6K)</option><option value="aps169">APS-C · 16:9 (4K 50/60p)</option><option value="aps179">APS-C · 17:9 (C4K 50/60p)</option><option value="custom">Своя область сенсора</option>
+    </select></label>
+    <div class="two"><label class="field"><span>Кроп дополнительно ×</span><input id="crop" type="number" min="1" max="4" step="0.05" value="1" data-lockable></label><label class="field"><span>Единицы расстояния</span><select id="units" data-lockable><option value="m">Метры / сантиметры</option><option value="ft">Футы / дюймы</option></select></label></div>
+    <div id="customSensor" class="hidden"><div class="two"><label class="field"><span>Ширина сенсора, мм</span><input id="sensorW" type="number" value="35.6" step="0.1" data-lockable></label><label class="field"><span>Высота сенсора, мм</span><input id="sensorH" type="number" value="23.8" step="0.1" data-lockable></label></div></div>
+    <div class="two"><label class="field"><span>CoC, мм</span><input id="coc" type="number" step="0.001" min="0.001" value="0.028" data-lockable></label><label class="field"><span>Критерий CoC</span><select id="cocMode" data-lockable><option value="auto">Автоматически</option><option value="manual">Вручную</option></select></label></div>
+    <div class="help-line" id="sensorInfo">Значение CoC зависит от активной области кадра.</div>
+    <div class="divider"></div>
+    <div class="section-title"><h2>Ручной фокус / Bias</h2></div>
+    <label class="field"><span id="biasLabel">Сдвиг фокуса, м</span><input id="bias" type="number" step="0.01" value="0" data-lockable></label>
+    <input type="range" id="biasSlider" min="-1" max="1" step="0.01" value="0" aria-label="Сдвиг фокуса" data-lockable>
+    <div class="btn-row"><button id="resetBias" class="btn smallbtn" type="button" data-lockable>Фокус на объект</button><span class="small" id="biasExplanation">Положительное значение — фокус дальше объекта.</span></div>
+    <div class="divider"></div>
+    <label class="toggle"><input id="customLensToggle" type="checkbox" data-lockable>Использовать другой объектив</label>
+    <div id="customLens" class="hidden"><div class="two"><label class="field"><span>Фокусное, мм</span><input id="customFocal" type="number" min="1" max="1200" step="1" value="24" data-lockable></label><label class="field"><span>МДФ, м (от матрицы)</span><input id="customClose" type="number" min="0.01" step="0.01" value="0.20" data-lockable></label></div><label class="field"><span>Открытая диафрагма</span><input id="customMaxA" type="number" min="0.7" max="64" step="0.1" value="1.8" data-lockable></label></div>
+    <div class="divider"></div>
+    <label class="field"><span>Рост персонажа, м (симулятор)</span><input id="personHeight" type="number" min="0.5" max="2.5" step="0.05" value="1.75" data-lockable></label>
+    <p class="mini-note">Расчёты по модели тонкой линзы. Дистанции фокусировки указываются от плоскости сенсора. Focus breathing и индивидуальные особенности объективов не моделируются. CoC — условный критерий приемлемой резкости.</p>
+   </div>
+   <div class="control-actions lens-row"><div class="divider"></div><div class="btn-row"><button class="btn primary" type="button" id="saveShot">＋ Сохранить кадр</button><button class="btn ghost" id="resetAll" type="button" data-lockable>Сброс настроек</button></div><p class="mini-note">Настройки автоматически сохраняются в этом браузере. Сайт не требует интернета и внешних библиотек.</p></div>
   </div>
-
+ </aside>
+ <main class="main">
+  <section class="panel" aria-label="Результат расчёта">
+   <div class="result-head"><div><span class="caption">Результат в реальном времени</span><div class="tagline" id="setupLabel">50 мм · f/2.8 · Full Frame 16:9</div></div><span class="pill" id="focusStatus">● В зоне резкости</span></div>
+   <div id="warning" class="alert" role="alert"></div>
+   <div id="resultsBody">
+    <div class="hero"><div class="label">Глубина резкости · Total DOF</div><div class="big" id="totalValue">—</div><div class="limits"><div class="limit"><div class="title">Ближняя граница · Near</div><div class="val" id="nearValue">—</div></div><div class="limit"><div class="title">Дальняя граница · Far</div><div class="val" id="farValue">—</div></div></div></div>
+    <div class="metrics"><div class="metric"><div class="name">Дистанция фокуса</div><div class="value" id="focusValue">—</div></div><div class="metric"><div class="name">Ширина кадра</div><div class="value" id="widthValue">—</div></div><div class="metric"><div class="name">Высота кадра</div><div class="value" id="heightValue">—</div></div></div>
+    <div class="viz"><div class="viz-top"><span class="viz-title">Визуализация</span><div class="tabs" role="tablist" aria-label="Тип визуализации"><button type="button" class="active" data-vis="dof" aria-selected="true">ГРИП</button><button type="button" data-vis="frame" aria-selected="false">Кадр</button></div></div>
+     <div id="dofVisual" class="graphic"><svg id="dofSvg" viewBox="0 0 540 160" role="img" aria-label="Масштабированная схема зоны резкости"></svg><div class="viz-labels"><span id="rangeLeft">—</span><span id="rangeRight">—</span></div><div class="legend"><span><i class="dot"></i>Объект</span><span><i class="dot mint"></i>Фокус</span><span><i class="dot blue"></i>Зона резкости</span></div></div>
+     <div id="frameVisual" class="hidden"><div class="frame" id="frameBox"><svg id="frameSvg" viewBox="0 0 1000 562" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Схематичный кадр с силуэтом персонажа"></svg></div><div class="frame-foot"><span class="small">Охват: <b id="frameDims">—</b></span><span class="small">Силуэт схематичный · без перспективы фона</span></div></div>
+    </div>
+    <div class="extra" id="extraText">—</div>
+   </div>
+  </section>
+  <section class="panel section-gap"><div class="section-title"><h2>Выбрать объектив</h2><span class="sub">Та же дистанция и диафрагма</span></div><div class="list3" id="lensCompare"></div><p class="help-line">Нажми на объектив, чтобы сразу применить его. Если дистанция меньше МДФ, расчёт для него недоступен.</p></section>
+  <section class="panel section-gap"><div class="section-title"><h2>Инструменты на площадке</h2><span class="sub">Проверка и обратный расчёт</span></div>
+   <div class="toolcard"><h3>Два персонажа в фокусе</h3><p class="small">Рассчитать оптимальную дистанцию фокусировки и минимальную диафрагму для двух актёров.</p><div class="two"><label class="field"><span id="actorALabel">Первый актёр, м</span><input id="actorA" type="number" min="0.01" step="0.1" value="2" data-lockable></label><label class="field"><span id="actorBLabel">Второй актёр, м</span><input id="actorB" type="number" min="0.01" step="0.1" value="2.5" data-lockable></label></div><div class="feedback" id="twoResult" aria-live="polite">—</div><div class="btn-row" style="margin-top:9px"><button class="btn accent" type="button" id="applyTwo" data-lockable>Применить расчёт</button></div></div>
+   <div class="toolcard"><h3>Нужна определённая ГРИП</h3><p class="small">Подобрать диафрагму при текущей дистанции или дистанцию при текущей диафрагме.</p><label class="field"><span id="targetLabel">Желаемая ГРИП, см</span><input type="number" id="targetDOF" value="30" min="0.1" step="1" data-lockable></label><div class="feedback" id="inverseResult" aria-live="polite">—</div><div class="btn-row" style="margin-top:9px"><button id="applyAperture" type="button" class="btn accent" data-lockable>Применить диафрагму</button><button id="applyDistance" type="button" class="btn" data-lockable>Применить дистанцию</button></div></div>
+  </section>
+  <section class="panel section-gap" id="savedSection"><div class="section-title"><h2>Сохранённые кадры</h2><span class="sub" id="savedCount">0 кадров</span></div><div class="two"><label class="field"><span>Название кадра</span><input id="shotName" type="text" maxlength="100" placeholder="Сцена 01 · крупный план"></label><label class="field"><span>Примечание</span><input id="shotNote" type="text" maxlength="400" placeholder="Фокус на глазах, штатив…"></label></div><div class="btn-row" style="margin-top:12px"><button type="button" id="saveShotBottom" class="btn primary">＋ Сохранить текущий</button><button type="button" id="exportCSV" class="btn">CSV</button><button type="button" id="exportMD" class="btn">Markdown · Obsidian</button><button type="button" id="exportJSON" class="btn ghost">JSON</button><button type="button" id="importJSON" class="btn ghost">Импорт JSON</button><input type="file" id="importInput" accept=".json,application/json" class="hidden" aria-label="Файл JSON для восстановления кадров"></div><div id="shotList" class="shots"></div><div id="storageNotice" class="help-line"></div></section>
+  <footer class="foot">LensKit Field · S5IIX · Модель тонкой линзы, CoC по активному кадру. Это расчёт приемлемой, а не абсолютной резкости. Для критического фокуса проверяй изображение на мониторе камеры. Сохранение доступно локально при разрешённом хранилище браузера. Версия 2.0 · автономный HTML.</footer>
+ </main>
+</div>
+</div>
 <script>
-/* Core logic — DOF, FOV, bias, visualization, export CSV
-   Формулы:
-   H (mm) = (f^2) / (N * c) + f
-   s_near = (H * s) / (H + (s - f))
-   s_far  = (H * s) / (H - (s - f))  (если s < H, иначе Infinity)
-   DOF = s_far - s_near
-   FOV_dim = 2 * atan(dim / (2 * f)) (radians -> degrees)
-   Все длины внутри — мм (конвертация из метров)
-*/
-
-const formatEl = document.getElementById('format');
-const customBlock = document.getElementById('customBlock');
-const sensorWEl = document.getElementById('sensorW');
-const sensorHEl = document.getElementById('sensorH');
-const cocEl = document.getElementById('coc');
-
-const lensPills = document.querySelectorAll('.pill');
-const focalEl = document.getElementById('focal');
-const apertureEl = document.getElementById('aperture');
-const distanceEl = document.getElementById('distance');
-const unitsEl = document.getElementById('units');
-const biasEl = document.getElementById('bias');
-const biasVal = document.getElementById('biasVal');
-const calcBtn = document.getElementById('calc');
-const resetBiasBtn = document.getElementById('resetBiasBtn');
-const exportBtn = document.getElementById('exportCsv');
-
-const nearOut = document.getElementById('near');
-const farOut = document.getElementById('far');
-const totalOut = document.getElementById('total');
-const hyperOut = document.getElementById('hyper');
-const fovOut = document.getElementById('fov');
-const focusUsedOut = document.getElementById('focusUsed');
-
-const canvas = document.getElementById('vis');
-const ctx = canvas.getContext('2d');
-
-let sensor = {w:36.0, h:24.0, coc:0.030}; // defaults for Panasonic S5IIX
-
-// Predefined lens data (your lenses). All max apertures = 1.8 as requested.
-const lenses = {
-  "35": {f:35, maxA:1.8, close:0.28},
-  "50": {f:50, maxA:1.8, close:0.45},
-  "85": {f:85, maxA:1.8, close:0.85}
+'use strict';
+(() => {
+const $ = id => document.getElementById(id);
+const min = Math.min, max = Math.max;
+const MM = 1000;
+const FT = 3.280839895;
+const LENSES = {35:{f:35,wide:1.8,close:.24,label:'35 мм'},50:{f:50,wide:1.8,close:.45,label:'50 мм'},85:{f:85,wide:1.8,close:.80,label:'85 мм'}};
+const MODES = {
+ ff169:{label:'Full Frame · 16:9',w:35.6,h:35.6*9/16},
+ ff32:{label:'Full Frame · 3:2',w:35.6,h:23.8},
+ ff179:{label:'Full Frame · 17:9',w:35.6,h:35.6*9/17},
+ aps169:{label:'APS-C · 16:9',w:23.6,h:23.6*9/16},
+ aps179:{label:'APS-C · 17:9',w:23.6,h:23.6*9/17}
 };
-
-// helper
-function toMM(m){ return m * 1000; }
-function toM(mm){ return mm / 1000; }
-function fmt(val, u='m'){ if(!isFinite(val)) return '∞'; if(u==='ft') return (val*3.2808399).toFixed(3) + ' ft'; return val.toFixed(3) + ' м'; }
-
-function updateSensorFromFormat(){
-  const v = formatEl.value;
-  if(v==='ff'){ sensor.w=36; sensor.h=24; sensor.coc=0.030; customBlock.style.display='none'; }
-  else if(v==='s35'){ sensor.w=24; sensor.h=16; sensor.coc=0.025; customBlock.style.display='none'; }
-  else { customBlock.style.display='block'; sensor.w = parseFloat(sensorWEl.value) || 36; sensor.h = parseFloat(sensorHEl.value) || 24; sensor.coc = parseFloat(cocEl.value) || 0.030; }
+const FS=[1.8,2,2.8,4,5.6,8,11,16,22];
+const DEFAULT = {lens:'50',aperture:2.8,distance:2,bias:0,mode:'ff169',crop:1,units:'m',cocMode:'auto',coc:.028,sensorW:35.6,sensorH:23.8,customLens:false,customFocal:24,customClose:.2,customMaxA:1.8,personHeight:1.75,actorA:2,actorB:2.5,targetDOF:.30,advanced:false,vis:'dof',sun:false,locked:false};
+function storeGet(k,fallback){try{const t=localStorage.getItem(k);return t===null?fallback:JSON.parse(t)}catch(e){return fallback}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+let state={...DEFAULT,...storeGet('lenskit-field-state-v2',{})};
+let shots=storeGet('lenskit-field-shots-v2',[]);if(!Array.isArray(shots))shots=[];
+let current=null, inversePlan=null, twoPlan=null;
+let storageOk=true;
+const physical = m => state.units==='ft'?m*FT:m;
+const internal = d => state.units==='ft'?d/FT:d;
+const lenUnit=()=>state.units==='ft'?'ft':'м';
+const fineUnit=()=>state.units==='ft'?'in':'см';
+function fnum(n,d=2){if(!Number.isFinite(n))return '∞';return new Intl.NumberFormat('ru-RU',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n)}
+function dist(n,decimal=2){return Number.isFinite(n)?`${fnum(physical(n),decimal)} ${lenUnit()}`:'∞'}
+function dofTxt(n){if(!Number.isFinite(n))return '∞';return state.units==='ft'?`${fnum(n*39.37007874,1)} in`:`${fnum(n*100,1)} см`}
+function formatValue(n,digits=2){return Number.isFinite(n)?Number(n.toFixed(digits)):''}
+function toNumber(value){if(value===''||value===null||value===undefined)return NaN;return Number(String(value).replace(',','.'))}
+function lensData(which=state.lens){if(state.customLens&&which==='custom')return {f:state.customFocal,close:state.customClose,wide:state.customMaxA,label:'Своя оптика'};return LENSES[which]}
+function activeLens(){return state.customLens?lensData('custom'):lensData()}
+function sensorInfo(){let base=state.mode==='custom'?{label:'Пользовательский',w:state.sensorW,h:state.sensorH}:MODES[state.mode];if(!base)base=MODES.ff169;const w=base.w/state.crop,h=base.h/state.crop;const coc=state.cocMode==='auto'?.03*Math.hypot(w,h)/Math.hypot(35.6,23.8):state.coc;return {w,h,coc,label:base.label}}
+// Exact thin-lens defocus geometry. Distances to sensor are used as a field approximation.
+function calcDOF(lens,aperture,coc,focusM){
+ const f=lens.f,s=focusM*MM,H=(f*f)/(aperture*coc)+f;
+ const nearMM=(H-f)*s/(H+s-2*f);
+ const farMM=s>=H?Infinity:(H-f)*s/(H-s);
+ const near=nearMM/MM,far=farMM/MM;
+ return {H:H/MM,near,far,total:Number.isFinite(far)?max(0,far-near):Infinity};
 }
-
-// compute DOF given focusDistance (s) in meters
-function computeDOF_mm(f_mm, N, coc_mm, sensor_w_mm, sensor_h_mm, s_m){
-  const s_mm = toMM(s_m); // mm
-  const f = f_mm;
-  const c = coc_mm;
-  // Hyperfocal
-  const H = (f*f) / (N * c) + f;
-  const s_minus_f = s_mm - f;
-  const s_near = (H * s_mm) / (H + s_minus_f);
-  let s_far;
-  if(s_mm >= H) s_far = Infinity;
-  else s_far = (H * s_mm) / (H - s_minus_f);
-  const dof_mm = isFinite(s_far) ? (s_far - s_near) : Infinity;
-  const w = sensor_w_mm, h = sensor_h_mm;
-  const diag = Math.sqrt(w*w + h*h);
-  const fov = (dim) => 2 * Math.atan(dim / (2 * f)) * (180/Math.PI);
-  return {
-    H_mm: H,
-    near_mm: s_near,
-    far_mm: s_far,
-    dof_mm: dof_mm,
-    fov_h: fov(w),
-    fov_v: fov(h),
-    fov_d: fov(diag)
-  };
+function framing(lens,sensor,subjectM){const f=lens.f;const base=subjectM*MM-f;return {w:(base*sensor.w/f)/MM,h:(base*sensor.h/f)/MM,angleH:2*Math.atan(sensor.w/(2*f))*180/Math.PI,angleV:2*Math.atan(sensor.h/(2*f))*180/Math.PI}}
+function errors(lens,aperture,object,focus,sensor){let e=[];
+ if(!Number.isFinite(lens.f)||lens.f<1||lens.f>1200)e.push('Фокусное расстояние должно быть от 1 до 1200 мм.');
+ if(!Number.isFinite(lens.close)||lens.close<=0)e.push('Минимальная дистанция фокусировки должна быть больше нуля.');
+ if(!Number.isFinite(lens.wide)||lens.wide<.7||lens.wide>64)e.push('Проверь открытую диафрагму выбранного объектива.');
+ if(!Number.isFinite(aperture)||aperture<(lens.wide||1.8)-.0001||aperture> (state.customLens?64:22))e.push(`Допустимая диафрагма объектива: f/${fnum(lens.wide,1)}–f/${state.customLens?'64':'22'}.`);
+ if(!Number.isFinite(sensor.w)||!Number.isFinite(sensor.h)||sensor.w<=0||sensor.h<=0||sensor.w>100||sensor.h>100)e.push('Укажи корректные размеры сенсора.');
+ if(!Number.isFinite(state.crop)||state.crop<1||state.crop>4)e.push('Дополнительный кроп должен быть от 1 до 4×.');
+ if(!Number.isFinite(sensor.coc)||sensor.coc<=0||sensor.coc>=1)e.push('CoC должен быть больше 0 и меньше 1 мм.');
+ if(!Number.isFinite(object)||object<lens.close)e.push(`Объект ближе минимальной дистанции фокусировки ${fnum(lens.close,2)} м.`);
+ if(!Number.isFinite(focus)||focus<lens.close)e.push(`Фокус ${fnum(focus,2)} м недоступен: МДФ объектива ${fnum(lens.close,2)} м.`);
+ if(!Number.isFinite(object)||object<=lens.f/MM||!Number.isFinite(focus)||focus<=lens.f/MM)e.push('Расстояние должно быть больше фокусного расстояния объектива.');
+ return e;
 }
-
-// visualization
-function drawVis(res, object_m, focus_m){
-  // set canvas pixel ratio
-  const DPR = devicePixelRatio || 1;
-  canvas.width = canvas.clientWidth * DPR;
-  canvas.height = canvas.clientHeight * DPR;
-  ctx.setTransform(DPR,0,0,DPR,0,0);
-  ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
-
-  // background
-  const g = ctx.createLinearGradient(0,0,0,canvas.clientHeight);
-  g.addColorStop(0,'#04222b'); g.addColorStop(1,'#021018');
-  ctx.fillStyle = g; ctx.fillRect(0,0,canvas.clientWidth,canvas.clientHeight);
-
-  const pad = 38;
-  const left = pad;
-  const right = canvas.clientWidth - pad;
-  const midY = canvas.clientHeight / 2;
-
-  // map distances to x
-  const maxDist = Math.max(object_m*1.6, focus_m*1.6, toM(res.H_mm)*1.1, 10);
-  const mapX = (d) => left + (right - left) * Math.min(1, d / maxDist);
-
-  // camera icon
-  ctx.fillStyle = '#9ae6ff'; ctx.fillRect(left-6, midY-20, 12, 40);
-  ctx.fillStyle = '#bfeeff'; ctx.font='12px Inter, Arial'; ctx.fillText('Камера', left-22, midY-28);
-
-  // object
-  const objX = mapX(object_m);
-  const objY = midY; // ✅ центр по вертикали
-  ctx.fillStyle = '#ffd38a';
-  ctx.beginPath();
-  ctx.arc(objX, objY, 9, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = '#ffd38a';
-  ctx.font = '12px Inter';
-  ctx.fillText('Объект ' + object_m.toFixed(2) + ' м', objX - 36, objY - 18);
-
-  // focus plane
-  const focusX = mapX(focus_m);
-  ctx.strokeStyle = '#7ef0c2'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(focusX, 10); ctx.lineTo(focusX, canvas.clientHeight-10); ctx.stroke();
-  ctx.fillStyle = '#7ef0c2'; ctx.fillText('Плоскость фокуса ' + focus_m.toFixed(2) + ' м', Math.max(10, focusX-90), canvas.clientHeight-12);
-
-  // near/far bounds
-  const near_m = toM(res.near_mm);
-  const far_m = isFinite(res.far_mm) ? toM(res.far_mm) : Infinity;
-  const nearX = mapX(near_m);
-  const farX = isFinite(far_m) ? mapX(far_m) : right;
-
-  // DOF band
-  ctx.fillStyle = 'rgba(115,208,255,0.12)';
-  ctx.fillRect(nearX, 10, Math.max(2, farX - nearX), canvas.clientHeight-40);
-  ctx.strokeStyle = 'rgba(115,208,255,0.25)'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(nearX, 10); ctx.lineTo(nearX, canvas.clientHeight-30); ctx.moveTo(farX, 10); ctx.lineTo(farX, canvas.clientHeight-30); ctx.stroke();
-
-  // labels
-  ctx.fillStyle = '#aee7ff';
-  ctx.font = '12px Inter';
-
-  let nearLabelX = Math.min(nearX + 6, canvas.clientWidth - 120);
-  let farLabelX  = Math.min(farX - 60, canvas.clientWidth - 200);
-
-  // если подписи пересекаются — сдвинем Far правее
-  if (Math.abs(farLabelX - nearLabelX) < 80) {
-    farLabelX = nearLabelX + 80;
-  }
-
-  ctx.fillText('Near: ' + (isFinite(near_m) ? near_m.toFixed(2) + ' м' : '—'), nearLabelX, 18);
-  ctx.fillText('Far: ' + (isFinite(far_m) ? far_m.toFixed(2) + ' м' : '∞'), farLabelX, 18);
-  // rays schematic
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth=1;
-  for(let i=0;i<9;i++){
-    const t = i/8;
-    const x = left + 12 + t * (right-left-40);
-    ctx.beginPath(); ctx.moveTo(left+12, midY); ctx.lineTo(x, midY + (t-0.5)*40); ctx.stroke();
-  }
-
-
+function persist(){storageOk=storeSet('lenskit-field-state-v2',state)&&storeSet('lenskit-field-shots-v2',shots);$('storageNotice').textContent=storageOk?'Сохранено только в этом браузере и на этом устройстве.':'Браузер не разрешает постоянное хранение. Экспортируй кадры в JSON для резервной копии.'}
+function updateControls(){
+ document.querySelectorAll('[data-lens]').forEach(x=>x.classList.toggle('active',!state.customLens&&x.dataset.lens===state.lens));
+ $('aperture').value=String(state.aperture);
+ $('distance').value=formatValue(physical(state.distance),state.units==='ft'?3:2);
+ $('bias').value=formatValue(physical(state.bias),state.units==='ft'?3:2);
+ $('biasSlider').value=Math.max(-1,Math.min(1,state.bias));
+ $('mode').value=state.mode;$('crop').value=state.crop;$('units').value=state.units;
+ $('cocMode').value=state.cocMode;$('sensorW').value=state.sensorW;$('sensorH').value=state.sensorH;
+ $('coc').value=formatValue(state.coc,4);$('customLensToggle').checked=state.customLens;
+ $('customFocal').value=state.customFocal;$('customClose').value=state.customClose;$('customMaxA').value=state.customMaxA;
+ $('personHeight').value=state.personHeight;
+ $('actorA').value=formatValue(physical(state.actorA),state.units==='ft'?3:2);
+ $('actorB').value=formatValue(physical(state.actorB),state.units==='ft'?3:2);
+ $('targetDOF').value=formatValue(state.units==='ft'?state.targetDOF*39.37007874:state.targetDOF*100,1);
+ $('distanceLabel').textContent='До объекта, '+lenUnit();$('biasLabel').textContent='Сдвиг фокуса, '+lenUnit();$('actorALabel').textContent='Первый актёр, '+lenUnit();$('actorBLabel').textContent='Второй актёр, '+lenUnit();$('targetLabel').textContent='Желаемая ГРИП, '+fineUnit();
+ $('customSensor').classList.toggle('hidden',state.mode!=='custom');$('customLens').classList.toggle('hidden',!state.customLens);
+ $('coc').disabled=state.cocMode==='auto'||state.locked;
+ $('advancedControls').classList.toggle('hidden',!state.advanced);
+ $('quickTab').classList.toggle('active',!state.advanced);$('advancedTab').classList.toggle('active',state.advanced);
+ $('quickTab').setAttribute('aria-selected',String(!state.advanced));$('advancedTab').setAttribute('aria-selected',String(state.advanced));
+ $('dofVisual').classList.toggle('hidden',state.vis!=='dof');$('frameVisual').classList.toggle('hidden',state.vis!=='frame');
+ document.querySelectorAll('[data-vis]').forEach(b=>{const on=b.dataset.vis===state.vis;b.classList.toggle('active',on);b.setAttribute('aria-selected',String(on))});
+ $('sunBtn').classList.toggle('active',state.sun);$('appRoot').classList.toggle('sun',state.sun);
+ $('lockBtn').textContent=state.locked?'● Разблокировать':'○ Зафиксировать';$('lockBtn').setAttribute('aria-pressed',String(state.locked));
+ document.querySelectorAll('[data-lockable]').forEach(el=>el.disabled=state.locked);
+ if(!state.locked&&state.cocMode==='auto')$('coc').disabled=true;
+ document.querySelectorAll('[data-dist]').forEach(el=>{el.classList.toggle('active',Math.abs(Number(el.dataset.dist)-state.distance)<.0001);el.textContent=String(el.dataset.dist).replace('.',',')+' м'});
 }
-
-// main compute + UI update
-function computeAndRender(){
-  updateSensorFromFormat();
-  // read inputs
-  const f_mm = parseFloat(focalEl.value) || 50;
-  const N = parseFloat(apertureEl.value) || 5.6;
-  const objDist = parseFloat(distanceEl.value) || 2.0;
-  const bias = parseFloat(biasEl.value) || 0.0;
-  biasVal.textContent = bias.toFixed(2) + ' м';
-  const units = unitsEl.value;
-
-  // focus distance used = object + bias
-  let focusDist = objDist + bias;
-  if(focusDist < 0.01) focusDist = 0.01;
-
-  const res = computeDOF_mm(f_mm, N, sensor.coc, sensor.w, sensor.h, focusDist);
-
-  // outputs formatted in selected units
-  const u = units==='ft' ? 'ft' : 'm';
-  nearOut.textContent = fmt(toM(res.near_mm), u);
-  farOut.textContent = isFinite(res.far_mm) ? fmt(toM(res.far_mm), u) : '∞';
-  totalOut.textContent = isFinite(res.dof_mm) ? fmt(res.dof_mm/1000, u) : '∞';
-  hyperOut.textContent = fmt(toM(res.H_mm), u);
-  fovOut.textContent = res.fov_h.toFixed(1) + '° × ' + res.fov_v.toFixed(1) + '° × ' + res.fov_d.toFixed(1) + '°';
-  focusUsedOut.textContent = focusDist.toFixed(3) + ' м (object ' + objDist.toFixed(3) + ' м + bias ' + bias.toFixed(3) + ' м)';
-
-  drawVis(res, objDist, focusDist);
-
-  // return structure for export
-  return {
-    f_mm, N, coc_mm: sensor.coc, sensor_w_mm: sensor.w, sensor_h_mm: sensor.h,
-    object_m: objDist, bias_m: bias, focus_m: focusDist,
-    near_m: toM(res.near_mm), far_m: isFinite(res.far_mm) ? toM(res.far_mm) : Infinity, total_m: isFinite(res.dof_mm) ? res.dof_mm/1000 : Infinity,
-    hyper_m: toM(res.H_mm), fov_h: res.fov_h, fov_v: res.fov_v, fov_d: res.fov_d
-  };
+function update(){const lens=activeLens(),sensor=sensorInfo(),object=state.distance,focus=object+state.bias;
+ if(state.cocMode==='auto'&&Number.isFinite(sensor.coc)){$('coc').value=formatValue(sensor.coc,5)}
+ $('sensorInfo').textContent=`Активная область: ${fnum(sensor.w,2)} × ${fnum(sensor.h,2)} мм · CoC ${fnum(sensor.coc,4)} мм. Применённый кроп: ×${fnum(state.crop,2)}.`;
+ $('setupLabel').textContent=`${fnum(lens.f,0)} мм · f/${fnum(state.aperture,1)} · ${sensor.label}${state.crop>1?' · кроп ×'+fnum(state.crop,2):''}`;
+ const errs=errors(lens,state.aperture,object,focus,sensor);
+ const warning=$('warning');warning.classList.toggle('show',errs.length>0);warning.classList.toggle('error',errs.length>0);warning.textContent=errs.join(' ');
+ $('resultsBody').classList.toggle('hidden',errs.length>0);
+ current=null;
+ if(!errs.length){const d=calcDOF(lens,state.aperture,sensor.coc,focus),fr=framing(lens,sensor,object);
+ current={lens,sensor,object,focus,d,fr};$('totalValue').textContent=dofTxt(d.total);$('nearValue').textContent=dist(d.near);$('farValue').textContent=dist(d.far);$('focusValue').textContent=dist(focus);$('widthValue').textContent=dist(fr.w);$('heightValue').textContent=dist(fr.h);
+ const inside=object>=d.near-1e-10&&object<=d.far+1e-10;
+ $('focusStatus').textContent=inside?'● Объект в ГРИП':(object<d.near?'▲ Фокус дальше объекта':'▼ Фокус ближе объекта');
+ $('focusStatus').style.color=inside?'var(--mint)':'var(--danger)';$('extraText').textContent=`Гиперфокал: ${dist(d.H)} · FOV: ${fnum(fr.angleH,1)}° × ${fnum(fr.angleV,1)}° · Фокус ${state.bias===0?'на объекте':`со сдвигом ${dist(state.bias)}`}.`;
+ drawDOF(current);drawFrame(current);
+ }else{$('focusStatus').textContent='Проверь параметры';$('focusStatus').style.color='var(--danger)'}
+ renderLensCompare();renderTwo();renderInverse();persist();
 }
-
-// wiring events
-formatEl.addEventListener('change', ()=>{ updateSensorFromFormat(); computeAndRender(); });
-sensorWEl.addEventListener('change', ()=>{ sensor.w = parseFloat(sensorWEl.value) || 36; computeAndRender(); });
-sensorHEl.addEventListener('change', ()=>{ sensor.h = parseFloat(sensorHEl.value) || 24; computeAndRender(); });
-cocEl && cocEl.addEventListener('change', ()=>{ sensor.coc = parseFloat(cocEl.value) || 0.03; computeAndRender(); });
-
-lensPills.forEach(el => el.addEventListener('click', ()=>{
-  lensPills.forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
-  const f = parseFloat(el.dataset.f);
-  const maxap = parseFloat(el.dataset.max);
-  focalEl.value = f.toFixed(1);
-  // apertureEl.value = Math.max(1.0, Math.min(11, Math.round(maxap*10)/10 * 1.6)).toFixed(1);
-  computeAndRender();
-}));
-
-[focalEl, apertureEl, distanceEl, unitsEl, biasEl].forEach(inp => inp.addEventListener('change', computeAndRender));
-biasEl.addEventListener('input', ()=>{ biasVal.textContent = parseFloat(biasEl.value).toFixed(2) + ' м'; computeAndRender(); });
-
-calcBtn.addEventListener('click', computeAndRender);
-resetBiasBtn.addEventListener('click', ()=>{ 
-  biasEl.value = 0; 
-  biasVal.textContent = '0.00 м'; 
-  computeAndRender(); 
+function xmlNum(n){return Number(n.toFixed(2))}
+function drawDOF(cur){const {d,object,focus}=cur;let lo,hi;
+ if(!Number.isFinite(d.far)){const span=max(.4,focus*.6);lo=max(0,min(d.near,object,focus)-span*.45);hi=max(object,focus,d.near)+span;}
+ else{const span=max(.08,(d.far-d.near)*.9,Math.max(focus,object)*.09);lo=max(0,min(d.near,object,focus)-span);hi=max(d.far,object,focus)+span;}
+ if(hi<=lo)hi=lo+1;
+ const x=n=>Math.max(20,Math.min(520,20+(n-lo)/(hi-lo)*500));
+ const nearX=x(d.near),farX=Number.isFinite(d.far)?x(d.far):520,objX=x(object),focusX=x(focus),zoneW=max(1,farX-nearX);
+ $('dofSvg').innerHTML=`
+  <defs><linearGradient id="zoneGrad" x1="0" x2="1"><stop stop-color="#3f9abc" stop-opacity=".35"/><stop offset="1" stop-color="#70cbdd" stop-opacity=".22"/></linearGradient></defs>
+  <rect x="16" y="43" width="508" height="73" rx="8" fill="#132e40"/>
+  <rect x="${xmlNum(nearX)}" y="44" width="${xmlNum(zoneW)}" height="71" rx="4" fill="url(#zoneGrad)" />
+  <line x1="16" y1="79" x2="524" y2="79" stroke="#647f92" stroke-dasharray="5 7" opacity=".75" />
+  <line x1="${xmlNum(nearX)}" y1="35" x2="${xmlNum(nearX)}" y2="125" stroke="#81ccef" stroke-width="2" />
+  <line x1="${xmlNum(farX)}" y1="35" x2="${xmlNum(farX)}" y2="125" stroke="#81ccef" stroke-width="2" />
+  <line x1="${xmlNum(focusX)}" y1="24" x2="${xmlNum(focusX)}" y2="133" stroke="#77e3bd" stroke-width="3" />
+  <circle cx="${xmlNum(objX)}" cy="79" r="10" fill="#ffd382" stroke="#5a462a" stroke-width="3" />
+  <text x="${xmlNum(focusX)}" y="19" font-size="17" text-anchor="middle" fill="#a4ffda" font-weight="800">Фокус</text>
+  <text x="${xmlNum(objX)}" y="152" font-size="17" text-anchor="middle" fill="#ffe1a9" font-weight="800">Объект</text>
+  ${!Number.isFinite(d.far)?'<text x="514" y="61" text-anchor="end" fill="#d1f4ff" font-size="19">→ ∞</text>':''}`;
+ $('rangeLeft').textContent=`Масштаб от ${dist(lo)}`;$('rangeRight').textContent=`до ${dist(hi)}${!Number.isFinite(d.far)?' (дальше — ∞)':''}`;
+}
+function drawFrame(cur){const {sensor,lens,object,fr}=cur;const aspect=sensor.w/sensor.h;
+ $('frameBox').style.aspectRatio=String(aspect);$('frameSvg').setAttribute('viewBox',`0 0 1000 ${Math.round(1000/aspect)}`);
+ const H=1000/aspect,characterHeight=state.personHeight/fr.h*H;
+ const scale=characterHeight/270; const baseY=H/2+190*scale; // camera aimed roughly at the upper torso/face
+ // The character is human-shaped vector geometry, scaled against the framing height.
+ $('frameSvg').innerHTML=`<defs><linearGradient id="skyField" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1f5269"/><stop offset="1" stop-color="#0b2332"/></linearGradient><clipPath id="frameClip"><rect width="1000" height="${xmlNum(H)}"/></clipPath></defs>
+ <g clip-path="url(#frameClip)"><rect width="1000" height="${xmlNum(H)}" fill="url(#skyField)"/>
+ <path d="M0 ${xmlNum(H*.71)} H1000" stroke="#5d9cb0" stroke-opacity=".35" stroke-width="2"/>
+ <path d="M333 0 V${xmlNum(H)} M667 0 V${xmlNum(H)} M0 ${xmlNum(H/3)} H1000 M0 ${xmlNum(H*2/3)} H1000" stroke="#c7edf7" stroke-opacity=".27" stroke-width="2"/>
+ <g transform="translate(500 ${xmlNum(baseY)}) scale(${xmlNum(scale)})" fill="#c4dce9" stroke="#c4dce9" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="0" cy="-237" r="30" />
+  <path d="M-42 -199 Q0 -215 42 -199 L48 -105 L30 -90 L29 -12 L7 -12 L3 -91 L-3 -91 L-8 -12 L-30 -12 L-30 -93 L-47 -106 Z" />
+  <path d="M-42 -189 L-73 -112 L-63 -103 L-25 -161 M42 -189 L73 -112 L63 -103 L25 -161" fill="none" stroke-width="18"/>
+  <path d="M-20 -12 L-25 0 M20 -12 L25 0" stroke-width="22"/>
+ </g><path d="M484 ${xmlNum(H/2)} H516 M500 ${xmlNum(H/2-16)} V${xmlNum(H/2+16)}" stroke="#ffe1a9" stroke-width="2" opacity=".7"/></g>`;
+ $('frameDims').textContent=`${dist(fr.w)} × ${dist(fr.h)}`;
+}
+function renderLensCompare(){const container=$('lensCompare');container.replaceChildren();const se=sensorInfo();for(const [key,lens] of Object.entries(LENSES)){
+ const valid=Number.isFinite(state.distance)&&state.distance>=lens.close&&Number.isFinite(state.aperture)&&state.aperture>=lens.wide&&state.aperture<=22&&Number.isFinite(se.coc)&&se.coc>0&&Number.isFinite(se.w)&&se.w>0&&Number.isFinite(state.crop)&&state.crop>=1&&state.crop<=4;
+ let dof='—',w='—';if(valid){const focus=state.distance+state.bias;if(focus>=lens.close){const r=calcDOF(lens,state.aperture,se.coc,focus);dof=dofTxt(r.total);w=dist(framing(lens,se,state.distance).w)}}
+ const b=document.createElement('button');b.className='lens-card'+(!state.customLens&&state.lens===key?' current':'');b.type='button';b.disabled=state.locked;
+ const t=document.createElement('div');t.className='f';t.textContent=key+' мм';const a=document.createElement('div');a.className='kv';a.textContent='ГРИП';const av=document.createElement('strong');av.textContent=valid?dof:`МДФ ${fnum(lens.close,2)} м`;a.appendChild(av);const c=document.createElement('div');c.className='kv';c.textContent='Ширина кадра';const cv=document.createElement('strong');cv.textContent=w;c.appendChild(cv);b.append(t,a,c);b.addEventListener('click',()=>{state.customLens=false;state.lens=key;updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});container.appendChild(b);
+ }}
+function dofIncludes(d,a,b){return a>=d.near-1e-9&&b<=d.far+1e-9}
+function binaryLower(test,lo,hi){for(let i=0;i<75;i++){const mid=(lo+hi)/2;if(test(mid))hi=mid;else lo=mid}return hi}
+function renderTwo(){twoPlan=null;const out=$('twoResult'),lens=activeLens(),sen=sensorInfo();const a=min(state.actorA,state.actorB),b=max(state.actorA,state.actorB);
+ if(!Number.isFinite(a)||!Number.isFinite(b)||a<lens.close||b<lens.close){out.textContent=`Дистанции обоих актёров должны быть не меньше МДФ (${fnum(lens.close,2)} м).`;$('applyTwo').disabled=true;return}
+ if(!Number.isFinite(sen.coc)||sen.coc<=0||!Number.isFinite(lens.f)||lens.f<=0){out.textContent='Проверь параметры оптики и сенсора.';$('applyTwo').disabled=true;return}
+ const optimal=2*a*b/(a+b);const rangeMax=state.customLens?64:22;
+ const validAt=(N)=>dofIncludes(calcDOF(lens,N,sen.coc,optimal),a,b);
+ const needed=validAt(lens.wide)?lens.wide:(validAt(128)?binaryLower(validAt,lens.wide,128):Infinity);
+ const stand=FS.find(N=>N>=needed-1e-8&&N>=lens.wide-1e-8&&N<=rangeMax+1e-8);
+ const proposed=Number.isFinite(needed)?(stand||Math.min(rangeMax,Math.ceil(needed*10)/10)):null;
+ if(!Number.isFinite(needed)||needed>rangeMax+1e-8){out.innerHTML=`При ${fnum(lens.f,0)} мм оба объекта не поместятся в ГРИП даже на f/${fnum(rangeMax,0)}. Увеличь дистанцию или используй более короткое фокусное.`;$('applyTwo').disabled=true;return}
+ twoPlan={focus:optimal,aperture:proposed,needed};
+ const currentValid=current&&dofIncludes(current.d,a,b);
+ out.innerHTML=`Оптимальный фокус: <b>${dist(optimal)}</b><br>Минимум ≈ <b>f/${fnum(needed,1)}</b> · установить <span class="strong">f/${fnum(proposed,1)}</span><br><span style="color:${currentValid?'var(--mint)':'var(--amber)'}">${currentValid?'✓ Оба актёра сейчас в зоне резкости':'△ Текущих настроек недостаточно для обоих актёров'}</span>`;
+ $('applyTwo').disabled=state.locked;
+}
+function renderInverse(){inversePlan=null;const out=$('inverseResult'),lens=activeLens(),se=sensorInfo(),focus=state.distance+state.bias,target=state.targetDOF,maxN=state.customLens?64:22;
+ if(!Number.isFinite(target)||target<=0||!Number.isFinite(focus)||focus<lens.close||!Number.isFinite(se.coc)||se.coc<=0||!Number.isFinite(lens.wide)||lens.wide<=0||!Number.isFinite(state.aperture)||state.aperture<lens.wide||state.aperture>maxN){out.textContent='Проверь дистанцию, целевую ГРИП и параметры объектива.';$('applyAperture').disabled=true;$('applyDistance').disabled=true;return}
+ const dep=N=>calcDOF(lens,N,se.coc,focus).total;
+ let needA=dep(lens.wide)>=target?lens.wide:(dep(maxN)<target?null:binaryLower(N=>dep(N)>=target,lens.wide,maxN));
+ let selectedA=null;if(needA!==null){selectedA=FS.find(a=>a>=needA-1e-9&&a>=lens.wide&&a<=maxN)||Math.min(maxN,Math.ceil(needA*10)/10)}
+ // Solve required *focus* distance for the specified DOF, with bias reset on application.
+ const minDist=max(lens.close,lens.f/MM+.001);const reachAt=s=>calcDOF(lens,state.aperture,se.coc,s).total;
+ let neededDist=null;
+ if(reachAt(minDist)>=target)neededDist=minDist;
+ else{let hi=max(focus,1,minDist*2);while(reachAt(hi)<target&&hi<1e6)hi*=2;if(reachAt(hi)>=target)neededDist=binaryLower(s=>reachAt(s)>=target,minDist,hi)}
+ inversePlan={aperture:selectedA,distance:neededDist};
+ const apertureText=selectedA===null?`недостижима до f/${fnum(maxN,0)}`:`≈ f/${fnum(needA,1)} → <b>f/${fnum(selectedA,1)}</b>`;
+ const distText=neededDist===null?'не найдена':(neededDist===minDist?`уже от ${dist(minDist)}`:`<b>${dist(neededDist)}</b>`);
+ out.innerHTML=`Для ГРИП ${dofTxt(target)}:<br>• При текущем фокусе диафрагма: ${apertureText}<br>• При f/${fnum(state.aperture,1)} фокус/дистанция объекта: ${distText}`;
+ $('applyAperture').disabled=state.locked||selectedA===null;
+ $('applyDistance').disabled=state.locked||neededDist===null;
+}
+function recompute(){update();}
+function setLens(key){state.customLens=false;state.lens=key;updateControls();update()}
+function applyAperture(val){if(!Number.isFinite(val))return;state.aperture=val;if(!FS.includes(val)){const opt=$('aperture').querySelector('option[data-dynamic="1"]');if(opt)opt.remove();const o=new Option(`f/${fnum(val,1)}`,String(val));o.dataset.dynamic='1';$('aperture').add(o)}updateControls();update()}
+function takeField(id,key,unit){const v=toNumber($(id).value);state[key]=unit==='length'?internal(v):unit==='centi'?(state.units==='ft'?v/39.37007874:v/100):v;update();}
+for(const [id,key,unit] of [['distance','distance','length'],['bias','bias','length'],['crop','crop'],['coc','coc'],['sensorW','sensorW'],['sensorH','sensorH'],['customFocal','customFocal'],['customClose','customClose'],['customMaxA','customMaxA'],['personHeight','personHeight'],['actorA','actorA','length'],['actorB','actorB','length'],['targetDOF','targetDOF','centi']]){
+ $(id).addEventListener('input',()=>{takeField(id,key,unit);if(id==='bias')$('biasSlider').value=Math.max(-1,Math.min(1,state.bias));});
+}
+$('aperture').addEventListener('change',()=>{state.aperture=toNumber($('aperture').value);update()});
+$('mode').addEventListener('change',()=>{state.mode=$('mode').value;updateControls();update()});
+$('crop').addEventListener('change',()=>update());
+$('units').addEventListener('change',()=>{state.units=$('units').value;updateControls();update()});
+$('cocMode').addEventListener('change',()=>{state.cocMode=$('cocMode').value;updateControls();update()});
+$('customLensToggle').addEventListener('change',()=>{state.customLens=$('customLensToggle').checked;updateControls();update()});
+$('biasSlider').addEventListener('input',()=>{state.bias=toNumber($('biasSlider').value);$('bias').value=formatValue(physical(state.bias),2);update()});
+$('resetBias').addEventListener('click',()=>{state.bias=0;updateControls();update()});
+$('lensButtons').addEventListener('click',ev=>{const b=ev.target.closest('[data-lens]');if(b&&!state.locked)setLens(b.dataset.lens)});
+$('distancePresets').addEventListener('click',ev=>{const b=ev.target.closest('[data-dist]');if(b&&!state.locked){state.distance=Number(b.dataset.dist);updateControls();update()}});
+for(const b of document.querySelectorAll('[data-step]'))b.addEventListener('click',()=>{if(state.locked)return;const [field,d]=b.dataset.step.split(':'),step=Number(d);if(field==='distance'){state.distance=max(.01,Math.round((state.distance+step*.1)*1000)/1000);updateControls();update()}else{let i=FS.findIndex(f=>Math.abs(f-state.aperture)<1e-6);if(i<0)i=FS.findIndex(f=>f>state.aperture);if(i<0)i=FS.length-1;applyAperture(FS[Math.max(0,Math.min(FS.length-1,i+step))])}});
+$('quickTab').addEventListener('click',()=>{state.advanced=false;updateControls();persist()});
+$('advancedTab').addEventListener('click',()=>{state.advanced=true;updateControls();persist()});
+for(const b of document.querySelectorAll('[data-vis]'))b.addEventListener('click',()=>{state.vis=b.dataset.vis;updateControls();update()});
+$('sunBtn').addEventListener('click',()=>{state.sun=!state.sun;updateControls();persist()});
+$('lockBtn').addEventListener('click',()=>{state.locked=!state.locked;updateControls();update()});
+$('resetAll').addEventListener('click',()=>{if(!confirm('Сбросить параметры съёмки? Сохранённые кадры останутся.'))return;const sun=state.sun,shotsMode=state.advanced;state={...DEFAULT,sun,advanced:shotsMode};updateControls();update()});
+$('applyTwo').addEventListener('click',()=>{if(!twoPlan||state.locked)return;state.distance=state.actorA;state.bias=twoPlan.focus-state.actorA;applyAperture(twoPlan.aperture);updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});
+$('applyAperture').addEventListener('click',()=>{if(inversePlan&&inversePlan.aperture!==null&&!state.locked)applyAperture(inversePlan.aperture)});
+$('applyDistance').addEventListener('click',()=>{if(!inversePlan||inversePlan.distance===null||state.locked)return;state.distance=inversePlan.distance;state.bias=0;updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function shotData(){const l=activeLens(),se=sensorInfo();const obj={...state};delete obj.locked;return {state:obj,derived:current?{lens:l.f,aperture:state.aperture,near:current.d.near,far:current.d.far,dof:current.d.total,focus:current.focus,width:current.fr.w,height:current.fr.h,hyperfocal:current.d.H,mode:se.label,coc:se.coc}:null}}
+function save(){if(!current){alert('Сначала укажи допустимые параметры для расчёта.');return}if(shots.length>=300){alert('Достигнут предел 300 кадров. Экспортируй данные и удали ненужные карточки.');return}
+ const name=$('shotName').value.trim()||`Кадр ${String(shots.length+1).padStart(2,'0')}`;const note=$('shotNote').value.trim();const data=shotData();shots.unshift({id:Date.now()+'-'+Math.random().toString(36).slice(2,7),name,note,time:new Date().toISOString(),...data});renderShots();persist();$('shotName').value='';$('shotNote').value='';$('savedSection').scrollIntoView({behavior:'smooth',block:'start'})}
+$('saveShot').addEventListener('click',save);$('saveShotBottom').addEventListener('click',save);
+function renderShots(){const count=shots.length;$('savedCount').textContent=`${count} ${count%10===1&&count%100!==11?'кадр':(count%10>=2&&count%10<=4&&(count%100<12||count%100>14)?'кадра':'кадров')}`;const list=$('shotList');list.replaceChildren();if(!count){const p=document.createElement('p');p.className='small';p.textContent='Пока нет сохранённых кадров. Добавь первый, чтобы быстро возвращаться к настройкам сцены.';list.append(p);return}
+ shots.forEach((shot,index)=>{const card=document.createElement('article');card.className='shot';const label=document.createElement('div');label.className='shot-title';label.textContent=shot.name;const info=document.createElement('div');info.className='shot-info';const s=shot.state||{};info.textContent=`${shot.derived?fnum(shot.derived.lens,0)+' мм':'—'} · f/${fnum(s.aperture||0,1)} · ${fnum(s.distance||0,2)} м · ${shot.derived?.mode||''}`;
+ card.append(label,info);if(shot.note){const note=document.createElement('p');note.textContent=shot.note;card.append(note)}
+ const actions=document.createElement('div');actions.className='shot-actions';const load=document.createElement('button');load.className='btn smallbtn';load.textContent='Загрузить';load.addEventListener('click',()=>{state={...DEFAULT,...shot.state,locked:false};updateControls();update();window.scrollTo({top:0,behavior:'smooth'})});const del=document.createElement('button');del.className='btn smallbtn danger';del.textContent='Удалить';del.addEventListener('click',()=>{if(confirm(`Удалить «${shot.name}»?`)){shots=shots.filter(x=>x.id!==shot.id);renderShots();persist()}});actions.append(load,del);card.append(actions);list.append(card)})}
+function download(name,type,txt){const blob=new Blob(['\ufeff'+txt],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},1200)}
+function csvField(x){const t=x===undefined||x===null?'':String(x);return '"'+t.replace(/"/g,'""')+'"'}
+function csv(){const collection=shots.length?shots:[{name:'Текущий кадр',note:'',time:new Date().toISOString(),...shotData()}];const keys=['name','time','camera','focal_mm','aperture','object_m','bias_m','focus_m','near_m','far_m','total_dof_m','hyperfocal_m','frame_width_m','frame_height_m','mode','coc_mm','note'];const rows=collection.map(s=>[s.name,s.time,'Panasonic S5IIX',s.derived?.lens,s.state.aperture,s.state.distance,s.state.bias,s.derived?.focus,s.derived?.near,s.derived?.far,s.derived?.dof,s.derived?.hyperfocal,s.derived?.width,s.derived?.height,s.derived?.mode,s.derived?.coc,s.note]);download('LensKit_shots.csv','text/csv',[keys.map(csvField).join(','),...rows.map(r=>r.map(csvField).join(','))].join('\r\n'))}
+function md(){const collection=shots.length?shots:[{name:'Текущий кадр',note:'',time:new Date().toISOString(),...shotData()}];let content='---\ntitle: "LensKit — съёмочные кадры"\ntags: [кино, съемка, lenskit]\n---\n\n# Съёмочные кадры · Panasonic S5IIX\n\n';for(const s of collection){const d=s.derived||{};content+=`## ${s.name.replace(/[\r\n]/g,' ')}\n\n- **Объектив:** ${d.lens||'—'} мм\n- **Диафрагма:** f/${s.state.aperture}\n- **Дистанция объекта:** ${s.state.distance} м\n- **Смещение фокуса:** ${s.state.bias} м\n- **Дистанция фокуса:** ${d.focus??'—'} м\n- **ГРИП:** ${d.dof??'—'} м (Near ${d.near??'—'} м · Far ${d.far??'—'} м)\n- **Охват:** ${d.width??'—'} × ${d.height??'—'} м\n- **Режим:** ${d.mode||'—'}\n- **CoC:** ${d.coc??'—'} мм\n${s.note?'\n**Заметка:** '+s.note.replace(/\r\n?/g,'\n')+'\n':''}\n---\n\n`}
+ download('LensKit_shots.md','text/markdown',content)}
+$('exportCSV').addEventListener('click',csv);$('exportMD').addEventListener('click',md);$('exportJSON').addEventListener('click',()=>{download('LensKit_shots.json','application/json',JSON.stringify({app:'LensKit Field',version:2,exported:new Date().toISOString(),shots},null,2))});
+$('importJSON').addEventListener('click',()=>$('importInput').click());
+$('importInput').addEventListener('change',async()=>{
+ const file=$('importInput').files?.[0];if(!file)return;
+ try{const imported=JSON.parse(await file.text());if(imported.app!=='LensKit Field'||!Array.isArray(imported.shots)||imported.shots.length>300||imported.shots.some(s=>!s||typeof s.name!=='string'||!s.state||typeof s.state!=='object'||!s.derived))throw new Error('Неподходящий формат данных');
+ if(confirm(`Импортировать ${imported.shots.length} кадров? Текущая библиотека будет заменена.`)){shots=imported.shots.map((s,i)=>({...s,id:`import-${Date.now()}-${i}`,name:s.name.slice(0,100),note:typeof s.note==='string'?s.note.slice(0,400):''}));renderShots();persist()}}
+ catch(err){alert('Не удалось импортировать кадры: '+err.message)}finally{$('importInput').value=''}
 });
-
-exportBtn.addEventListener('click', ()=>{
-  const d = computeAndRender();
-  // CSV: one-line with key params
-  const headers = ['camera','sensor_w_mm','sensor_h_mm','coc_mm','f_mm','aperture','object_m','bias_m','focus_m','near_m','far_m','total_dof_m','hyperfocal_m','fov_h_deg','fov_v_deg','fov_d_deg'];
-  const row = [
-    'Panasonic S5IIX',
-    d.sensor_w_mm.toFixed(3), d.sensor_h_mm.toFixed(3), d.coc_mm.toFixed(4),
-    d.f_mm.toFixed(3), d.N.toFixed(2), d.object_m.toFixed(3), d.bias_m.toFixed(3), d.focus_m.toFixed(3),
-    (isFinite(d.near_m)?d.near_m.toFixed(4):'inf'),
-    (isFinite(d.far_m)?d.far_m.toFixed(4):'inf'),
-    (isFinite(d.total_m)?d.total_m.toFixed(4):'inf'),
-    (isFinite(d.hyper_m)?d.hyper_m.toFixed(4):'inf'),
-    d.fov_h.toFixed(3), d.fov_v.toFixed(3), d.fov_d.toFixed(3)
-  ];
-  const csv = headers.join(',') + '\n' + row.join(',');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download = 'lenskit_export.csv'; document.body.appendChild(a); a.click();
-  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1500);
-});
-
-// initial render
-updateSensorFromFormat();
-computeAndRender();
+// Sanitise possibly stale stored state and initialise the DOM.
+if(!LENSES[state.lens])state.lens='50';if(!MODES[state.mode]&&state.mode!=='custom')state.mode='ff169';if(!['m','ft'].includes(state.units))state.units='m';if(!['auto','manual'].includes(state.cocMode))state.cocMode='auto';if(!['dof','frame'].includes(state.vis))state.vis='dof';
+if(!FS.includes(state.aperture)&&Number.isFinite(state.aperture)){const opt=new Option(`f/${fnum(state.aperture,1)}`,String(state.aperture));opt.dataset.dynamic='1';$('aperture').add(opt)}
+updateControls();renderShots();update();
+// Re-render on new sizes to keep diagrams crisp and framing responsive.
+window.addEventListener('resize',()=>{if(current&&state.vis==='frame')drawFrame(current)});
+})();
 </script>
 </body>
 </html>
